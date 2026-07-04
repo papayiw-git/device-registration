@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @keyframes fcToastIn { from { opacity:0; transform:translate(-50%,10px); } to { opacity:1; transform:translate(-50%,0); } }
+  body { margin:0; }
+  * { font-family:'Inter',system-ui,sans-serif; }
+  input, textarea, select, button { font-family:'Inter',system-ui,sans-serif; }
+  ::placeholder { color:#9AA3B0; }
+</style>
+</helmet>
+<div style="min-height:100vh;background:#F5F6F8;display:flex;flex-direction:column;align-items:center;padding:28px 16px 60px;box-sizing:border-box;">
+
+  <div style="width:100%;max-width:1440px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:38px;height:38px;border-radius:10px;background:#14294B;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M9 3.5h6a1 1 0 0 1 1 1V6H8V4.5a1 1 0 0 1 1-1z"/><path d="M8.5 13l2.5 2.5L16 10"/></svg>
+      </div>
+      <div>
+        <div style="font-size:16px;font-weight:700;color:#14161A;line-height:1.3;">{{ t.brand }}</div>
+        <div style="font-size:12px;font-weight:500;color:#5B6472;line-height:1.4;">{{ t.tagline }}</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <sc-if value="{{ isDesktopCapable }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggleDesktop }}" style="height:36px;padding:0 14px;border-radius:9px;background:#fff;border:1px solid #E3E6EB;color:#14161A;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:7px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5B6472" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg>
+          <sc-if value="{{ showDesktop }}"><span>{{ t.viewMobile }}</span></sc-if>
+          <sc-if value="{{ showMobile }}"><span>{{ t.viewDesktop }}</span></sc-if>
+        </button>
+      </sc-if>
+      <button onClick="{{ toggleLang }}" style="height:36px;min-width:44px;padding:0 14px;border-radius:9px;background:#14294B;border:none;color:#fff;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:0.3px;">{{ t.langToggle }}</button>
+    </div>
+  </div>
+
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:#14161A;color:#fff;padding:13px 22px;border-radius:11px;font-size:14px;font-weight:500;box-shadow:0 14px 30px rgba(0,0,0,0.25);z-index:999;max-width:88vw;text-align:center;animation:fcToastIn .22s ease;">{{ toast }}</div>
+  </sc-if>
+
+  <sc-if value="{{ showMobile }}" hint-placeholder-val="{{ true }}">
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 390 }}" height="{{ 844 }}" dark="{{ isDark }}" hint-size="390,844">
+
+    <sc-if value="{{ screenIs_onboarding }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:100%;display:flex;flex-direction:column;background:linear-gradient(165deg,#182F54 0%,#0E1E38 100%);color:#fff;padding:74px 26px 36px;box-sizing:border-box;">
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:26px;">
+          <div style="width:54px;height:54px;border-radius:15px;background:rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M9 3.5h6a1 1 0 0 1 1 1V6H8V4.5a1 1 0 0 1 1-1z"/><path d="M8.5 13l2.5 2.5L16 10"/></svg>
+          </div>
+          <div>
+            <h1 style="font-size:27px;font-weight:700;line-height:1.5;margin:0 0 12px;">{{ t.onboarding.h1 }}</h1>
+            <p style="font-size:15px;font-weight:500;line-height:1.9;color:rgba(255,255,255,0.72);margin:0;">{{ t.onboarding.sub }}</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:15px;margin-top:4px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8FE3B8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.6 2.6L16 9.3"/></svg>
+              <span style="font-size:14px;font-weight:500;line-height:1.7;">{{ t.onboarding.bullet1 }}</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8FE3B8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.6 2.6L16 9.3"/></svg>
+              <span style="font-size:14px;font-weight:500;line-height:1.7;">{{ t.onboarding.bullet2 }}</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8FE3B8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.6 2.6L16 9.3"/></svg>
+              <span style="font-size:14px;font-weight:500;line-height:1.7;">{{ t.onboarding.bullet3 }}</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <button onClick="{{ goOnboardingCta }}" style="height:52px;border-radius:14px;background:#fff;color:#14294B;font-size:16px;font-weight:700;border:none;cursor:pointer;">{{ t.onboarding.cta }}</button>
+          <div style="text-align:center;font-size:13px;font-weight:500;color:rgba(255,255,255,0.68);">{{ t.onboarding.haveAccount }} <span onClick="{{ goLogin }}" style="color:#fff;font-weight:700;cursor:pointer;text-decoration:underline;">{{ t.onboarding.login }}</span></div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ screenIs_login }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:100%;display:flex;flex-direction:column;background:#fff;padding:72px 24px 40px;box-sizing:border-box;">
+        <h1 style="font-size:24px;font-weight:700;color:#14161A;margin:0 0 6px;line-height:1.5;">{{ t.auth.loginTitle }}</h1>
+        <p style="font-size:14px;font-weight:500;color:#5B6472;margin:0 0 26px;line-height:1.9;">{{ t.auth.loginSub }}</p>
+
+        <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;">{{ t.auth.email }}</label>
+        <input type="email" value="{{ authForm.email }}" onChange="{{ setAuthEmail }}" placeholder="{{ t.auth.emailPh }}" style="height:48px;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;font-size:15px;font-weight:500;color:#14161A;margin-bottom:16px;outline:none;box-sizing:border-box;" />
+
+        <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;">{{ t.auth.password }}</label>
+        <input type="password" value="{{ authForm.password }}" onChange="{{ setAuthPassword }}" placeholder="••••••••" style="height:48px;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;font-size:15px;font-weight:500;color:#14161A;margin-bottom:10px;outline:none;box-sizing:border-box;" />
+
+        <div style="text-align:right;margin-bottom:8px;">
+          <span onClick="{{ forgotPassword }}" style="font-size:13px;font-weight:600;color:#14294B;cursor:pointer;">{{ t.auth.forgot }}</span>
+        </div>
+
+        <sc-if value="{{ authError }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#FBE9E7;color:#C0392B;font-size:13px;font-weight:500;padding:10px 13px;border-radius:9px;margin-bottom:14px;line-height:1.7;">{{ authError }}</div>
+        </sc-if>
+
+        <button onClick="{{ submitLogin }}" style="height:50px;border-radius:12px;background:#14294B;color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;margin-top:6px;">{{ t.auth.loginCta }}</button>
+
+        <div style="text-align:center;font-size:13px;font-weight:500;color:#5B6472;margin-top:22px;">{{ t.auth.noAccount }} <span onClick="{{ goSignup }}" style="color:#14294B;font-weight:700;cursor:pointer;text-decoration:underline;">{{ t.auth.signupLink }}</span></div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ screenIs_signup }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:100%;display:flex;flex-direction:column;background:#fff;padding:72px 24px 40px;box-sizing:border-box;">
+        <h1 style="font-size:24px;font-weight:700;color:#14161A;margin:0 0 6px;line-height:1.5;">{{ t.auth.signupTitle }}</h1>
+        <p style="font-size:14px;font-weight:500;color:#5B6472;margin:0 0 22px;line-height:1.9;">{{ t.auth.signupSub }}</p>
+
+        <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;">{{ t.auth.name }}</label>
+        <input value="{{ authForm.name }}" onChange="{{ setAuthName }}" placeholder="{{ t.auth.namePh }}" style="height:46px;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;font-size:15px;font-weight:500;color:#14161A;margin-bottom:14px;outline:none;box-sizing:border-box;" />
+
+        <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;">{{ t.auth.email }}</label>
+        <input type="email" value="{{ authForm.email }}" onChange="{{ setAuthEmail }}" placeholder="{{ t.auth.emailPh }}" style="height:46px;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;font-size:15px;font-weight:500;color:#14161A;margin-bottom:14px;outline:none;box-sizing:border-box;" />
+
+        <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;">{{ t.auth.password }}</label>
+        <input type="password" value="{{ authForm.password }}" onChange="{{ setAuthPassword }}" placeholder="••••••••" style="height:46px;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;font-size:15px;font-weight:500;color:#14161A;margin-bottom:14px;outline:none;box-sizing:border-box;" />
+
+        <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;">{{ t.auth.confirmPassword }}</label>
+        <input type="password" value="{{ authForm.confirmPassword }}" onChange="{{ setAuthConfirmPassword }}" placeholder="••••••••" style="height:46px;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;font-size:15px;font-weight:500;color:#14161A;margin-bottom:10px;outline:none;box-sizing:border-box;" />
+
+        <sc-if value="{{ authError }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#FBE9E7;color:#C0392B;font-size:13px;font-weight:500;padding:10px 13px;border-radius:9px;margin-bottom:14px;line-height:1.7;">{{ authError }}</div>
+        </sc-if>
+
+        <button onClick="{{ submitSignup }}" style="height:50px;border-radius:12px;background:#14294B;color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;margin-top:6px;">{{ t.auth.signupCta }}</button>
+
+        <div style="text-align:center;font-size:13px;font-weight:500;color:#5B6472;margin-top:20px;">{{ t.auth.haveAccount }} <span onClick="{{ goLogin }}" style="color:#14294B;font-weight:700;cursor:pointer;text-decoration:underline;">{{ t.auth.haveAccountLink }}</span></div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ screenIs_home }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:100%;display:flex;flex-direction:column;background:#F7F8FA;box-sizing:border-box;">
+        <div style="padding:58px 20px 16px;background:#fff;border-bottom:1px solid #E3E6EB;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+            <h1 style="font-size:21px;font-weight:700;color:#14161A;margin:0;line-height:1.5;">{{ t.home.title }}</h1>
+            <button onClick="{{ goAddDevice }}" style="width:38px;height:38px;border-radius:11px;background:#14294B;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" aria-label="{{ t.home.addDevice }}" title="{{ t.home.addDevice }}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <div style="flex:1;background:#F5F6F8;border-radius:10px;padding:9px 6px;text-align:center;">
+              <div style="font-size:17px;font-weight:700;color:#14161A;">{{ total }}</div>
+              <div style="font-size:10px;font-weight:600;color:#5B6472;margin-top:2px;">{{ t.home.total }}</div>
+            </div>
+            <div style="flex:1;background:#FDF3E3;border-radius:10px;padding:9px 6px;text-align:center;">
+              <div style="font-size:17px;font-weight:700;color:#B9770E;">{{ soonCount }}</div>
+              <div style="font-size:10px;font-weight:600;color:#B9770E;margin-top:2px;">{{ t.home.soon }}</div>
+            </div>
+            <div style="flex:1;background:#FBE9E7;border-radius:10px;padding:9px 6px;text-align:center;">
+              <div style="font-size:17px;font-weight:700;color:#C0392B;">{{ overdueCount }}</div>
+              <div style="font-size:10px;font-weight:600;color:#C0392B;margin-top:2px;">{{ t.home.overdue }}</div>
+            </div>
+          </div>
+        </div>
+
+        <sc-if value="{{ showError }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;gap:16px;">
+            <div style="width:64px;height:64px;border-radius:18px;background:#FBE9E7;display:flex;align-items:center;justify-content:center;">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C0392B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 21.5 20h-19z"/><line x1="12" y1="9.5" x2="12" y2="14"/><circle cx="12" cy="17.2" r="0.9" fill="#C0392B" stroke="none"/></svg>
+            </div>
+            <div>
+              <div style="font-size:17px;font-weight:700;color:#14161A;margin-bottom:8px;">{{ t.error.h1 }}</div>
+              <div style="font-size:13.5px;font-weight:500;color:#5B6472;line-height:1.9;max-width:260px;">{{ t.error.sub }}</div>
+              <div style="font-size:11.5px;font-weight:500;color:#9AA3B0;margin-top:10px;font-family:ui-monospace,monospace;">{{ t.error.code }}</div>
+            </div>
+            <button onClick="{{ toggleSimulateError }}" style="height:46px;padding:0 22px;border-radius:12px;background:#14294B;color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v5h-5"/></svg>
+              {{ t.error.retry }}
+            </button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;gap:18px;">
+            <div style="width:64px;height:64px;border-radius:18px;background:#EDEFF2;display:flex;align-items:center;justify-content:center;">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#9AA3B0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3z"/></svg>
+            </div>
+            <div>
+              <div style="font-size:17px;font-weight:700;color:#14161A;margin-bottom:8px;line-height:1.5;">{{ t.empty.h1 }}</div>
+              <div style="font-size:13.5px;font-weight:500;color:#5B6472;line-height:1.9;max-width:260px;">{{ t.empty.sub }}</div>
+            </div>
+            <button onClick="{{ goAddDevice }}" style="height:46px;padding:0 22px;border-radius:12px;background:#14294B;color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;">{{ t.empty.cta }}</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showDeviceList }}" hint-placeholder-val="{{ true }}">
+          <div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:16px 20px 20px;">
+            <sc-for list="{{ devicesView }}" as="item" hint-placeholder-count="3">
+              <div onClick="{{ item.openDetail }}" style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:13px;cursor:pointer;">
+                <div style="position:relative;width:48px;height:48px;flex-shrink:0;">
+                  <svg width="48" height="48" viewBox="0 0 48 48" style="transform:rotate(-90deg);">
+                    <circle cx="24" cy="24" r="21" fill="none" stroke="#EDEFF2" stroke-width="4"/>
+                    <circle cx="24" cy="24" r="21" fill="none" stroke="{{ item.statusColor }}" stroke-width="4" stroke-linecap="round" stroke-dasharray="{{ 131.9 }}" style="stroke-dashoffset:{{ item.ringOffsetSmall }};" />
+                  </svg>
+                  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                    <sc-if value="{{ item.isWater }}" hint-placeholder-val="{{ false }}"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3z"/></svg></sc-if>
+                    <sc-if value="{{ item.isAircon }}" hint-placeholder-val="{{ false }}"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h11a2.5 2.5 0 1 0-2.5-2.5"/><path d="M4 13h14a2.5 2.5 0 1 1-2.5 2.5"/><path d="M4 18h9"/></svg></sc-if>
+                    <sc-if value="{{ item.isPurifier }}" hint-placeholder-val="{{ false }}"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></sc-if>
+                    <sc-if value="{{ item.isVacuum }}" hint-placeholder-val="{{ false }}"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20h6"/><path d="M8 20V11a4 4 0 0 1 8 0v9"/><circle cx="12" cy="6" r="2.3"/></svg></sc-if>
+                  </div>
+                </div>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:14.5px;font-weight:700;color:#14161A;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ item.name }}</div>
+                  <div style="font-size:12px;font-weight:500;color:#5B6472;line-height:1.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ item.typeLabel }} · {{ item.location }}</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0;">
+                  <div style="font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:{{ item.statusBg }};color:{{ item.statusColor }};white-space:nowrap;">{{ item.statusLabel }}</div>
+                  <div style="font-size:11px;font-weight:600;color:#5B6472;white-space:nowrap;">{{ item.dueText }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <div style="position:sticky;bottom:0;left:0;right:0;display:flex;background:#fff;border-top:1px solid #E3E6EB;padding:10px 6px 26px;">
+          <button onClick="{{ goHome }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.home }};">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9h5v-5h2v5h5v-9"/></svg>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.home }};">{{ t.nav.home }}</span>
+          </button>
+          <button onClick="{{ goSearch }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.search }};">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.search }};">{{ t.nav.search }}</span>
+          </button>
+          <button onClick="{{ goNotifications }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.notifications }};">
+            <div style="position:relative;">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/><path d="M9.5 17a2.5 2.5 0 0 0 5 0"/></svg>
+              <sc-if value="{{ hasNotifBadge }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:-2px;right:-2px;width:8px;height:8px;border-radius:50%;background:#C0392B;border:1.5px solid #fff;"></div></sc-if>
+            </div>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.notifications }};">{{ t.nav.notifications }}</span>
+          </button>
+          <button onClick="{{ goSettings }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.settings }};">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="14" cy="7" r="2.1"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="17" r="2.1"/></svg>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.settings }};">{{ t.nav.settings }}</span>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ screenIs_detail }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:100%;display:flex;flex-direction:column;background:#fff;box-sizing:border-box;">
+        <div style="padding:56px 20px 0;display:flex;align-items:center;justify-content:space-between;">
+          <button onClick="{{ goHome }}" style="width:36px;height:36px;border-radius:10px;background:#F5F6F8;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" aria-label="{{ t.common.back }}" title="{{ t.common.back }}">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14161A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button onClick="{{ editSelected }}" style="width:36px;height:36px;border-radius:10px;background:#F5F6F8;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" aria-label="{{ t.common.edit }}" title="{{ t.common.edit }}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#14161A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4.5L15.5 5 19 8.5 8.5 19z"/><path d="M13.5 6.5l4 4"/></svg>
+          </button>
+        </div>
+
+        <div style="flex:1;overflow:auto;padding:16px 20px 24px;display:flex;flex-direction:column;gap:18px;">
+          <div style="text-align:center;">
+            <div style="font-size:19px;font-weight:700;color:#14161A;line-height:1.5;">{{ selectedDevice.name }}</div>
+            <div style="font-size:13px;font-weight:500;color:#5B6472;margin-top:4px;line-height:1.8;">{{ selectedDevice.typeLabel }} · {{ selectedDevice.location }}</div>
+          </div>
+
+          <div style="display:flex;justify-content:center;">
+            <div style="position:relative;width:128px;height:128px;">
+              <svg width="128" height="128" viewBox="0 0 128 128" style="transform:rotate(-90deg);">
+                <circle cx="64" cy="64" r="54" fill="none" stroke="#EDEFF2" stroke-width="9"/>
+                <circle cx="64" cy="64" r="54" fill="none" stroke="{{ selectedDevice.statusColor }}" stroke-width="9" stroke-linecap="round" stroke-dasharray="{{ 339.3 }}" style="stroke-dashoffset:{{ selectedDevice.ringOffsetBig }};" />
+              </svg>
+              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;">
+                <div style="font-size:9.5px;font-weight:700;padding:2px 9px;border-radius:20px;background:{{ selectedDevice.statusBg }};color:{{ selectedDevice.statusColor }};white-space:nowrap;">{{ selectedDevice.statusLabel }}</div>
+                <div style="font-size:10.5px;font-weight:700;color:#14161A;line-height:1.4;text-align:center;width:84px;">{{ selectedDevice.dueText }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#F5F6F8;border-radius:14px;overflow:hidden;">
+            <img src="{{ selectedDevice.image }}" alt="{{ selectedDevice.typeLabel }}" loading="lazy" decoding="async" style="width:100%;height:148px;object-fit:contain;display:block;background:#eef1f5;" />
+            <div style="text-align:center;font-size:10.5px;font-weight:500;color:#9AA3B0;padding:8px 10px;font-family:ui-monospace,monospace;">{{ t.detail.photoCaption }}</div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:11px;background:#F5F6F8;border-radius:14px;padding:16px;">
+            <div style="display:flex;justify-content:space-between;font-size:13px;gap:12px;"><span style="color:#5B6472;font-weight:500;">{{ t.detail.nextDue }}</span><span style="color:#14161A;font-weight:700;text-align:right;">{{ selectedDevice.nextDueDate }}</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;gap:12px;"><span style="color:#5B6472;font-weight:500;">{{ t.detail.lastChangedOn }}</span><span style="color:#14161A;font-weight:700;text-align:right;">{{ selectedDevice.lastChangedDate }}</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;gap:12px;"><span style="color:#5B6472;font-weight:500;">{{ t.addDevice.cycle }}</span><span style="color:#14161A;font-weight:700;text-align:right;">{{ selectedDevice.cycleText }}</span></div>
+            <sc-if value="{{ selectedDevice.brand }}" hint-placeholder-val="{{ false }}"><div style="display:flex;justify-content:space-between;font-size:13px;gap:12px;"><span style="color:#5B6472;font-weight:500;">{{ t.addDevice.brand }}</span><span style="color:#14161A;font-weight:700;text-align:right;">{{ selectedDevice.brand }}</span></div></sc-if>
+            <sc-if value="{{ selectedDevice.note }}" hint-placeholder-val="{{ false }}"><div style="font-size:12px;font-weight:500;color:#5B6472;line-height:1.8;border-top:1px solid #E3E6EB;padding-top:10px;">{{ selectedDevice.note }}</div></sc-if>
+          </div>
+
+          <button onClick="{{ markChangedToday }}" style="height:50px;border-radius:12px;background:#14294B;color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.6 2.6L16 9.3"/></svg>
+            {{ t.detail.markChanged }}
+          </button>
+
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="{{ selectedDevice.orderUrl }}" target="_blank" rel="noopener noreferrer" style="height:50px;border-radius:12px;border:1.5px solid #14294B;color:#14294B;font-size:14px;font-weight:700;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;box-sizing:border-box;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M3 8v9l9 4 9-4V8"/><path d="M12 12v9"/></svg>
+              {{ t.detail.orderCta }}
+            </a>
+            <div style="text-align:center;font-size:11px;font-weight:500;color:#9AA3B0;line-height:1.8;">{{ t.detail.orderNote }}</div>
+          </div>
+
+          <div>
+            <div style="font-size:12.5px;font-weight:700;color:#14161A;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.4px;">{{ t.detail.history }}</div>
+            <div style="display:flex;flex-direction:column;">
+              <sc-for list="{{ historyView }}" as="h" hint-placeholder-count="2">
+                <div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #EDEFF2;">
+                  <div style="width:8px;height:8px;border-radius:50%;background:#14294B;flex-shrink:0;"></div>
+                  <div style="flex:1;font-size:12.5px;font-weight:600;color:#14161A;">{{ h.label }}</div>
+                  <div style="font-size:11.5px;font-weight:500;color:#9AA3B0;">{{ h.date }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <sc-if value="{{ confirmingDelete }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#FBE9E7;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;">
+              <div style="font-size:13.5px;font-weight:700;color:#C0392B;">{{ t.common.confirmDelete }}</div>
+              <div style="font-size:12px;font-weight:500;color:#8a3a33;line-height:1.8;">{{ t.common.confirmDeleteSub }}</div>
+              <div style="display:flex;gap:10px;">
+                <button onClick="{{ cancelDelete }}" style="flex:1;height:42px;border-radius:10px;background:#fff;border:1px solid #E3B0AA;color:#14161A;font-size:13px;font-weight:700;cursor:pointer;">{{ t.common.no }}</button>
+                <button onClick="{{ confirmDelete }}" style="flex:1;height:42px;border-radius:10px;background:#C0392B;border:none;color:#fff;font-size:13px;font-weight:700;cursor:pointer;">{{ t.common.yesDelete }}</button>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ notConfirmingDelete }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ askDelete }}" style="height:46px;border-radius:12px;background:none;border:1px solid #E3E6EB;color:#C0392B;font-size:13.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C0392B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14"/><path d="M9 7V5h6v2"/><path d="M7 7l1 13h8l1-13"/></svg>
+              {{ t.common.delete }}
+            </button>
+          </sc-if>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ screenIs_addDevice }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:100%;display:flex;flex-direction:column;background:#fff;box-sizing:border-box;">
+        <div style="padding:56px 20px 0;">
+          <button onClick="{{ cancelForm }}" style="width:36px;height:36px;border-radius:10px;background:#F5F6F8;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;" aria-label="{{ t.common.back }}" title="{{ t.common.back }}">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14161A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+        </div>
+        <div style="flex:1;overflow:auto;padding:14px 20px 30px;display:flex;flex-direction:column;gap:16px;">
+          <div>
+            <div style="font-size:19px;font-weight:700;color:#14161A;margin-bottom:5px;">{{ formTitle }}</div>
+            <div style="font-size:13px;font-weight:500;color:#5B6472;line-height:1.8;">{{ formSub }}</div>
+          </div>
+
+          <div>
+            <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;display:block;">{{ t.addDevice.nickname }} <span style="color:#C0392B;">*</span></label>
+            <input value="{{ form.nickname }}" onChange="{{ setNickname }}" placeholder="{{ t.addDevice.nicknamePh }}" style="height:46px;width:100%;border-radius:11px;border:1px solid {{ nicknameBorder }};padding:0 14px;font-size:15px;font-weight:500;color:#14161A;outline:none;box-sizing:border-box;" />
+            <sc-if value="{{ formErrors.nickname }}" hint-placeholder-val="{{ false }}"><div style="color:#C0392B;font-size:12px;font-weight:500;margin-top:6px;">{{ formErrors.nickname }}</div></sc-if>
+          </div>
+
+          <div>
+            <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;display:block;">{{ t.addDevice.type }}</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
+              <button onClick="{{ setTypeWater }}" style="display:flex;align-items:center;gap:9px;height:48px;border-radius:11px;padding:0 12px;cursor:pointer;background:{{ formTypeWaterBg }};border:1.5px solid {{ formTypeWaterBorder }};color:{{ formTypeWaterColor }};">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3z"/></svg>
+                <span style="font-size:12.5px;font-weight:700;text-align:left;">{{ typeLabelWater }}</span>
+              </button>
+              <button onClick="{{ setTypeAircon }}" style="display:flex;align-items:center;gap:9px;height:48px;border-radius:11px;padding:0 12px;cursor:pointer;background:{{ formTypeAirconBg }};border:1.5px solid {{ formTypeAirconBorder }};color:{{ formTypeAirconColor }};">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h11a2.5 2.5 0 1 0-2.5-2.5"/><path d="M4 13h14a2.5 2.5 0 1 1-2.5 2.5"/><path d="M4 18h9"/></svg>
+                <span style="font-size:12.5px;font-weight:700;text-align:left;">{{ typeLabelAircon }}</span>
+              </button>
+              <button onClick="{{ setTypePurifier }}" style="display:flex;align-items:center;gap:9px;height:48px;border-radius:11px;padding:0 12px;cursor:pointer;background:{{ formTypePurifierBg }};border:1.5px solid {{ formTypePurifierBorder }};color:{{ formTypePurifierColor }};">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>
+                <span style="font-size:12.5px;font-weight:700;text-align:left;">{{ typeLabelPurifier }}</span>
+              </button>
+              <button onClick="{{ setTypeVacuum }}" style="display:flex;align-items:center;gap:9px;height:48px;border-radius:11px;padding:0 12px;cursor:pointer;background:{{ formTypeVacuumBg }};border:1.5px solid {{ formTypeVacuumBorder }};color:{{ formTypeVacuumColor }};">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20h6"/><path d="M8 20V11a4 4 0 0 1 8 0v9"/><circle cx="12" cy="6" r="2.3"/></svg>
+                <span style="font-size:12.5px;font-weight:700;text-align:left;">{{ typeLabelVacuum }}</span>
+              </button>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:11px;">
+            <div style="flex:1;">
+              <img src="{{ formPreviewImage }}" alt="{{ t.detail.photoCaption }}" loading="lazy" decoding="async" style="width:100%;height:76px;object-fit:contain;background:#F5F6F8;border-radius:11px;display:block;" />
+            </div>
+            <div style="flex:2;display:flex;flex-direction:column;justify-content:center;">
+              <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;display:block;">{{ t.addDevice.brand }}</label>
+              <input value="{{ form.brand }}" onChange="{{ setBrand }}" placeholder="{{ t.addDevice.brandPh }}" style="height:44px;width:100%;border-radius:11px;border:1px solid #E3E6EB;padding:0 12px;font-size:14px;font-weight:500;color:#14161A;outline:none;box-sizing:border-box;" />
+            </div>
+          </div>
+          <div style="font-size:11.5px;font-weight:500;color:#9AA3B0;line-height:1.7;margin-top:-8px;">{{ t.addDevice.brandNote }}</div>
+
+          <div>
+            <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;display:block;">{{ t.addDevice.location }}</label>
+            <input value="{{ form.location }}" onChange="{{ setLocation }}" placeholder="{{ t.addDevice.locationPh }}" style="height:46px;width:100%;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;font-size:15px;font-weight:500;color:#14161A;outline:none;box-sizing:border-box;" />
+          </div>
+
+          <div>
+            <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;display:block;">{{ t.addDevice.lastChanged }} <span style="color:#C0392B;">*</span></label>
+            <input type="date" value="{{ form.lastChanged }}" onChange="{{ setLastChanged }}" style="height:46px;width:100%;border-radius:11px;border:1px solid {{ lastChangedBorder }};padding:0 14px;font-size:15px;font-weight:500;color:#14161A;outline:none;box-sizing:border-box;" />
+            <sc-if value="{{ formErrors.lastChanged }}" hint-placeholder-val="{{ false }}"><div style="color:#C0392B;font-size:12px;font-weight:500;margin-top:6px;">{{ formErrors.lastChanged }}</div></sc-if>
+          </div>
+
+          <div>
+            <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;display:block;">{{ t.addDevice.cycle }} <span style="color:#C0392B;">*</span></label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button onClick="{{ setCycle30 }}" style="height:38px;padding:0 14px;border-radius:20px;cursor:pointer;background:{{ formCycle30PillBg }};border:1.5px solid {{ formCycle30PillBorder }};color:{{ formCycle30PillColor }};font-size:13px;font-weight:700;">30</button>
+              <button onClick="{{ setCycle60 }}" style="height:38px;padding:0 14px;border-radius:20px;cursor:pointer;background:{{ formCycle60PillBg }};border:1.5px solid {{ formCycle60PillBorder }};color:{{ formCycle60PillColor }};font-size:13px;font-weight:700;">60</button>
+              <button onClick="{{ setCycle90 }}" style="height:38px;padding:0 14px;border-radius:20px;cursor:pointer;background:{{ formCycle90PillBg }};border:1.5px solid {{ formCycle90PillBorder }};color:{{ formCycle90PillColor }};font-size:13px;font-weight:700;">90</button>
+              <button onClick="{{ setCycle180 }}" style="height:38px;padding:0 14px;border-radius:20px;cursor:pointer;background:{{ formCycle180PillBg }};border:1.5px solid {{ formCycle180PillBorder }};color:{{ formCycle180PillColor }};font-size:13px;font-weight:700;">180</button>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:9px;">
+              <input type="number" min="1" value="{{ form.cycleCustom }}" onChange="{{ setCycleCustom }}" placeholder="{{ t.addDevice.cycleCustom }}" style="height:42px;width:130px;border-radius:11px;border:1.5px solid {{ formCycleCustomPillBorder }};padding:0 12px;font-size:14px;font-weight:600;color:{{ formCycleCustomPillColor }};outline:none;box-sizing:border-box;" />
+              <span style="font-size:12.5px;font-weight:500;color:#9AA3B0;">{{ t.home.nextDue }}</span>
+            </div>
+            <sc-if value="{{ formErrors.cycleDays }}" hint-placeholder-val="{{ false }}"><div style="color:#C0392B;font-size:12px;font-weight:500;margin-top:6px;">{{ formErrors.cycleDays }}</div></sc-if>
+          </div>
+
+          <div>
+            <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;display:block;">{{ t.addDevice.notes }}</label>
+            <textarea value="{{ form.notes }}" onChange="{{ setNotes }}" placeholder="{{ t.addDevice.notesPh }}" rows="3" style="width:100%;border-radius:11px;border:1px solid #E3E6EB;padding:12px 14px;font-size:14px;font-weight:500;color:#14161A;outline:none;box-sizing:border-box;line-height:1.8;resize:none;"></textarea>
+          </div>
+
+          <button onClick="{{ submitForm }}" style="height:50px;border-radius:12px;background:#14294B;color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;margin-top:4px;">{{ formSubmitLabel }}</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ screenIs_search }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:100%;display:flex;flex-direction:column;background:#F7F8FA;box-sizing:border-box;">
+        <div style="padding:58px 20px 14px;background:#fff;border-bottom:1px solid #E3E6EB;display:flex;flex-direction:column;gap:12px;">
+          <h1 style="font-size:21px;font-weight:700;color:#14161A;margin:0;line-height:1.5;">{{ t.search.title }}</h1>
+          <div style="position:relative;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9AA3B0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+            <input value="{{ query }}" onChange="{{ setQuery }}" placeholder="{{ t.search.placeholder }}" style="height:46px;width:100%;border-radius:12px;border:1px solid #E3E6EB;padding:0 14px 0 40px;font-size:14px;font-weight:500;color:#14161A;outline:none;box-sizing:border-box;background:#F5F6F8;" />
+          </div>
+          <div style="display:flex;gap:7px;overflow:auto;padding-bottom:2px;">
+            <button onClick="{{ setStatusAll }}" style="height:32px;padding:0 13px;border-radius:20px;white-space:nowrap;cursor:pointer;background:{{ statusAllPillBg }};border:1.5px solid {{ statusAllPillBorder }};color:{{ statusAllPillColor }};font-size:12px;font-weight:700;">{{ t.search.statusAll }}</button>
+            <button onClick="{{ setStatusOk }}" style="height:32px;padding:0 13px;border-radius:20px;white-space:nowrap;cursor:pointer;background:{{ statusOkPillBg }};border:1.5px solid {{ statusOkPillBorder }};color:{{ statusOkPillColor }};font-size:12px;font-weight:700;">{{ t.home.statusOk }}</button>
+            <button onClick="{{ setStatusSoon }}" style="height:32px;padding:0 13px;border-radius:20px;white-space:nowrap;cursor:pointer;background:{{ statusSoonPillBg }};border:1.5px solid {{ statusSoonPillBorder }};color:{{ statusSoonPillColor }};font-size:12px;font-weight:700;">{{ t.home.statusSoon }}</button>
+            <button onClick="{{ setStatusOverdue }}" style="height:32px;padding:0 13px;border-radius:20px;white-space:nowrap;cursor:pointer;background:{{ statusOverduePillBg }};border:1.5px solid {{ statusOverduePillBorder }};color:{{ statusOverduePillColor }};font-size:12px;font-weight:700;">{{ t.home.statusOverdue }}</button>
+          </div>
+          <div style="display:flex;gap:7px;overflow:auto;padding-bottom:2px;">
+            <button onClick="{{ setTypeFilterAll }}" style="height:30px;padding:0 12px;border-radius:20px;white-space:nowrap;cursor:pointer;background:{{ typeAllPillBg }};border:1px solid {{ typeAllPillBorder }};color:{{ typeAllPillColor }};font-size:11.5px;font-weight:600;">{{ t.search.typeAll }}</button>
+            <button onClick="{{ setTypeFilterWater }}" style="height:30px;padding:0 12px;border-radius:20px;white-space:nowrap;cursor:pointer;background:{{ typeWaterPillBg }};border:1px solid {{ typeWaterPillBorder }};color:{{ typeWaterPillColor }};font-size:11.5px;font-weight:600;">{{ typeLabelWater }}</button>
+            <button onClick="{{ setTypeFilterAircon }}" style="height:30px;padding:0 12px;border-radius:20px;white-space:nowrap;cursor:pointer;background:{{ typeAirconPillBg }};border:1px solid {{ typeAirconPillBorder }};color:{{ typeAirconPillColor }};font-size:11.5px;font-weight:600;">{{ typeLabelAircon }}</button>
+            <button onClick="{{ setTypeFilterPurifier }}" style="height:30px;padding:0 12px;border-radius:20px;white-space:nowrap;cursor:pointer;background:{{ typePurifierPillBg }};border:1px solid {{ typePurifierPillBorder }};color:{{ typePurifierPillColor }};font-size:11.5px;font-weight:600;">{{ typeLabelPurifier }}</button>
+            <button onClick="{{ setTypeFilterVacuum }}" style="height:30px;padding:0 12px;border-radius:20px;white-space:nowrap;cursor:pointer;background:{{ typeVacuumPillBg }};border:1px solid {{ typeVacuumPillBorder }};color:{{ typeVacuumPillColor }};font-size:11.5px;font-weight:600;">{{ typeLabelVacuum }}</button>
+          </div>
+        </div>
+
+        <div style="padding:12px 20px 4px;font-size:12px;font-weight:600;color:#5B6472;">{{ searchCount }} results</div>
+
+        <sc-if value="{{ hasSearchResults }}" hint-placeholder-val="{{ true }}">
+          <div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:6px 20px 20px;">
+            <sc-for list="{{ searchResults }}" as="item" hint-placeholder-count="3">
+              <div onClick="{{ item.openDetail }}" style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:13px;cursor:pointer;">
+                <div style="width:42px;height:42px;border-radius:11px;background:#F5F6F8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <sc-if value="{{ item.isWater }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3z"/></svg></sc-if>
+                  <sc-if value="{{ item.isAircon }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h11a2.5 2.5 0 1 0-2.5-2.5"/><path d="M4 13h14a2.5 2.5 0 1 1-2.5 2.5"/><path d="M4 18h9"/></svg></sc-if>
+                  <sc-if value="{{ item.isPurifier }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></sc-if>
+                  <sc-if value="{{ item.isVacuum }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20h6"/><path d="M8 20V11a4 4 0 0 1 8 0v9"/><circle cx="12" cy="6" r="2.3"/></svg></sc-if>
+                </div>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:14px;font-weight:700;color:#14161A;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ item.name }}</div>
+                  <div style="font-size:11.5px;font-weight:500;color:#5B6472;line-height:1.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ item.brand }} · {{ item.location }}</div>
+                </div>
+                <div style="font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:{{ item.statusBg }};color:{{ item.statusColor }};white-space:nowrap;flex-shrink:0;">{{ item.statusLabel }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ noSearchResults }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;gap:14px;">
+            <div style="width:56px;height:56px;border-radius:16px;background:#EDEFF2;display:flex;align-items:center;justify-content:center;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9AA3B0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+            </div>
+            <div style="font-size:15px;font-weight:700;color:#14161A;line-height:1.6;">{{ t.search.noResults }}</div>
+            <div style="font-size:13px;font-weight:500;color:#5B6472;line-height:1.9;max-width:240px;">{{ t.search.noResultsSub }}</div>
+            <button onClick="{{ clearFilters }}" style="height:42px;padding:0 18px;border-radius:11px;background:#F5F6F8;color:#14161A;font-size:13px;font-weight:700;border:none;cursor:pointer;">{{ t.search.clearFilters }}</button>
+          </div>
+        </sc-if>
+
+        <div style="position:sticky;bottom:0;left:0;right:0;display:flex;background:#fff;border-top:1px solid #E3E6EB;padding:10px 6px 26px;">
+          <button onClick="{{ goHome }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.home }};">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9h5v-5h2v5h5v-9"/></svg>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.home }};">{{ t.nav.home }}</span>
+          </button>
+          <button onClick="{{ goSearch }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.search }};">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.search }};">{{ t.nav.search }}</span>
+          </button>
+          <button onClick="{{ goNotifications }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.notifications }};">
+            <div style="position:relative;">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/><path d="M9.5 17a2.5 2.5 0 0 0 5 0"/></svg>
+              <sc-if value="{{ hasNotifBadge }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:-2px;right:-2px;width:8px;height:8px;border-radius:50%;background:#C0392B;border:1.5px solid #fff;"></div></sc-if>
+            </div>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.notifications }};">{{ t.nav.notifications }}</span>
+          </button>
+          <button onClick="{{ goSettings }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.settings }};">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="14" cy="7" r="2.1"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="17" r="2.1"/></svg>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.settings }};">{{ t.nav.settings }}</span>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ screenIs_notifications }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:100%;display:flex;flex-direction:column;background:#F7F8FA;box-sizing:border-box;">
+        <div style="padding:58px 20px 16px;background:#fff;border-bottom:1px solid #E3E6EB;">
+          <h1 style="font-size:21px;font-weight:700;color:#14161A;margin:0;line-height:1.5;">{{ t.notif.title }}</h1>
+        </div>
+
+        <sc-if value="{{ hasNotifications }}" hint-placeholder-val="{{ true }}">
+          <div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:16px 20px 20px;">
+            <sc-for list="{{ notificationsView }}" as="n" hint-placeholder-count="2">
+              <div style="background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;align-items:flex-start;gap:11px;">
+                  <div style="width:34px;height:34px;border-radius:10px;background:{{ n.severityBg }};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{ n.severityColor }}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/><path d="M9.5 17a2.5 2.5 0 0 0 5 0"/></svg>
+                  </div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:14px;font-weight:700;color:#14161A;line-height:1.6;">{{ n.name }}</div>
+                    <div style="font-size:12.5px;font-weight:500;color:#5B6472;line-height:1.8;margin-top:2px;">{{ n.message }}</div>
+                  </div>
+                  <div style="font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:{{ n.severityBg }};color:{{ n.severityColor }};white-space:nowrap;flex-shrink:0;">{{ n.severityLabel }}</div>
+                </div>
+                <div style="display:flex;gap:8px;">
+                  <button onClick="{{ n.openDetail }}" style="flex:1;height:38px;border-radius:10px;background:#14294B;border:none;color:#fff;font-size:12.5px;font-weight:700;cursor:pointer;">{{ t.notif.view }}</button>
+                  <button onClick="{{ n.snooze }}" style="flex:1;height:38px;border-radius:10px;background:#F5F6F8;border:none;color:#14161A;font-size:12.5px;font-weight:700;cursor:pointer;">{{ t.notif.snooze }}</button>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ noNotifications }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;gap:14px;">
+            <div style="width:56px;height:56px;border-radius:16px;background:#E7F5EE;display:flex;align-items:center;justify-content:center;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1E8E5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.6 2.6L16 9.3"/></svg>
+            </div>
+            <div style="font-size:15px;font-weight:700;color:#14161A;line-height:1.6;">{{ t.notif.empty }}</div>
+            <div style="font-size:13px;font-weight:500;color:#5B6472;line-height:1.9;max-width:240px;">{{ t.notif.emptySub }}</div>
+          </div>
+        </sc-if>
+
+        <div style="position:sticky;bottom:0;left:0;right:0;display:flex;background:#fff;border-top:1px solid #E3E6EB;padding:10px 6px 26px;">
+          <button onClick="{{ goHome }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.home }};">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9h5v-5h2v5h5v-9"/></svg>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.home }};">{{ t.nav.home }}</span>
+          </button>
+          <button onClick="{{ goSearch }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.search }};">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.search }};">{{ t.nav.search }}</span>
+          </button>
+          <button onClick="{{ goNotifications }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.notifications }};">
+            <div style="position:relative;">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/><path d="M9.5 17a2.5 2.5 0 0 0 5 0"/></svg>
+              <sc-if value="{{ hasNotifBadge }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:-2px;right:-2px;width:8px;height:8px;border-radius:50%;background:#C0392B;border:1.5px solid #fff;"></div></sc-if>
+            </div>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.notifications }};">{{ t.nav.notifications }}</span>
+          </button>
+          <button onClick="{{ goSettings }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.settings }};">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="14" cy="7" r="2.1"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="17" r="2.1"/></svg>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.settings }};">{{ t.nav.settings }}</span>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ screenIs_settings }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:100%;display:flex;flex-direction:column;background:#F7F8FA;box-sizing:border-box;">
+        <div style="padding:58px 20px 16px;background:#fff;border-bottom:1px solid #E3E6EB;">
+          <h1 style="font-size:21px;font-weight:700;color:#14161A;margin:0;line-height:1.5;">{{ t.settings.title }}</h1>
+        </div>
+
+        <div style="flex:1;overflow:auto;padding:18px 20px 20px;display:flex;flex-direction:column;gap:20px;">
+
+          <div>
+            <div style="font-size:11.5px;font-weight:700;color:#9AA3B0;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:9px;">{{ t.settings.account }}</div>
+            <div style="background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+              <div style="width:42px;height:42px;border-radius:50%;background:#EFF3F9;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:14px;font-weight:700;color:#14161A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ accountName }}</div>
+                <div style="font-size:12px;font-weight:500;color:#5B6472;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ accountEmail }}</div>
+              </div>
+              <button onClick="{{ logout }}" style="width:36px;height:36px;border-radius:10px;background:#F5F6F8;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;" aria-label="{{ t.settings.logout }}" title="{{ t.settings.logout }}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C0392B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h4v16h-4"/><path d="M11 8l-4 4 4 4"/><path d="M7 12h10"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size:11.5px;font-weight:700;color:#9AA3B0;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:9px;">{{ t.settings.notifSection }}</div>
+            <div style="background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:16px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:13.5px;font-weight:600;color:#14161A;">{{ t.settings.pushEnabled }}</span>
+                <button onClick="{{ togglePush }}" style="width:46px;height:26px;border-radius:20px;border:none;cursor:pointer;position:relative;background:{{ pushTrackBg }};">
+                  <div style="position:absolute;top:3px;left:{{ pushKnobLeft }};width:20px;height:20px;border-radius:50%;background:#fff;transition:left .15s ease;"></div>
+                </button>
+              </div>
+              <div>
+                <div style="font-size:12.5px;font-weight:600;color:#5B6472;margin-bottom:9px;">{{ t.settings.leadTime }}</div>
+                <div style="display:flex;gap:8px;">
+                  <button onClick="{{ setLead3 }}" style="flex:1;height:36px;border-radius:10px;cursor:pointer;background:{{ leadDays3PillBg }};border:1.5px solid {{ leadDays3PillBorder }};color:{{ leadDays3PillColor }};font-size:12.5px;font-weight:700;">3 {{ t.common.requiredMark }}</button>
+                  <button onClick="{{ setLead7 }}" style="flex:1;height:36px;border-radius:10px;cursor:pointer;background:{{ leadDays7PillBg }};border:1.5px solid {{ leadDays7PillBorder }};color:{{ leadDays7PillColor }};font-size:12.5px;font-weight:700;">7</button>
+                  <button onClick="{{ setLead14 }}" style="flex:1;height:36px;border-radius:10px;cursor:pointer;background:{{ leadDays14PillBg }};border:1.5px solid {{ leadDays14PillBorder }};color:{{ leadDays14PillColor }};font-size:12.5px;font-weight:700;">14</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size:11.5px;font-weight:700;color:#9AA3B0;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:9px;">{{ t.settings.dataSection }}</div>
+            <div style="background:#fff;border:1px solid #E3E6EB;border-radius:14px;overflow:hidden;">
+              <button onClick="{{ exportCsv }}" style="width:100%;height:52px;border:none;background:none;display:flex;align-items:center;gap:12px;padding:0 14px;cursor:pointer;border-bottom:1px solid #EDEFF2;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 19h14"/></svg>
+                <span style="font-size:13.5px;font-weight:600;color:#14161A;">{{ t.settings.exportCsv }}</span>
+              </button>
+              <button onClick="{{ resetSampleData }}" style="width:100%;height:52px;border:none;background:none;display:flex;align-items:center;gap:12px;padding:0 14px;cursor:pointer;border-bottom:1px solid #EDEFF2;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v5h-5"/></svg>
+                <span style="font-size:13.5px;font-weight:600;color:#14161A;">{{ t.settings.resetSample }}</span>
+              </button>
+              <button onClick="{{ askClearAll }}" style="width:100%;height:52px;border:none;background:none;display:flex;align-items:center;gap:12px;padding:0 14px;cursor:pointer;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#C0392B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14"/><path d="M9 7V5h6v2"/><path d="M7 7l1 13h8l1-13"/></svg>
+                <span style="font-size:13.5px;font-weight:600;color:#C0392B;">{{ t.settings.clearAll }}</span>
+              </button>
+            </div>
+            <sc-if value="{{ confirmingClearAll }}" hint-placeholder-val="{{ false }}">
+              <div style="background:#FBE9E7;border-radius:14px;padding:14px;margin-top:10px;display:flex;flex-direction:column;gap:10px;">
+                <div style="font-size:13px;font-weight:700;color:#C0392B;">{{ t.settings.confirmClear }}</div>
+                <div style="font-size:12px;font-weight:500;color:#8a3a33;line-height:1.8;">{{ t.settings.confirmClearSub }}</div>
+                <div style="display:flex;gap:10px;">
+                  <button onClick="{{ cancelClearAll }}" style="flex:1;height:40px;border-radius:10px;background:#fff;border:1px solid #E3B0AA;color:#14161A;font-size:12.5px;font-weight:700;cursor:pointer;">{{ t.common.no }}</button>
+                  <button onClick="{{ confirmClearAllAction }}" style="flex:1;height:40px;border-radius:10px;background:#C0392B;border:none;color:#fff;font-size:12.5px;font-weight:700;cursor:pointer;">{{ t.common.yesDelete }}</button>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+
+          <div>
+            <div style="font-size:11.5px;font-weight:700;color:#9AA3B0;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:9px;">{{ t.settings.testSection }}</div>
+            <div style="background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:13.5px;font-weight:600;color:#14161A;">{{ t.settings.simulateError }}</span>
+              <button onClick="{{ toggleSimulateError }}" style="width:46px;height:26px;border-radius:20px;border:none;cursor:pointer;position:relative;background:{{ simTrackBg }};">
+                <div style="position:absolute;top:3px;left:{{ simKnobLeft }};width:20px;height:20px;border-radius:50%;background:#fff;transition:left .15s ease;"></div>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size:11.5px;font-weight:700;color:#9AA3B0;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:9px;">{{ t.settings.aboutSection }}</div>
+            <div style="background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+              <div style="width:34px;height:34px;border-radius:10px;background:#14294B;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M9 3.5h6a1 1 0 0 1 1 1V6H8V4.5a1 1 0 0 1 1-1z"/><path d="M8.5 13l2.5 2.5L16 10"/></svg>
+              </div>
+              <div>
+                <div style="font-size:13.5px;font-weight:700;color:#14161A;">{{ t.brand }}</div>
+                <div style="font-size:12px;font-weight:500;color:#5B6472;">{{ t.settings.version }}</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="position:sticky;bottom:0;left:0;right:0;display:flex;background:#fff;border-top:1px solid #E3E6EB;padding:10px 6px 26px;">
+          <button onClick="{{ goHome }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.home }};">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9h5v-5h2v5h5v-9"/></svg>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.home }};">{{ t.nav.home }}</span>
+          </button>
+          <button onClick="{{ goSearch }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.search }};">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.search }};">{{ t.nav.search }}</span>
+          </button>
+          <button onClick="{{ goNotifications }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.notifications }};">
+            <div style="position:relative;">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/><path d="M9.5 17a2.5 2.5 0 0 0 5 0"/></svg>
+              <sc-if value="{{ hasNotifBadge }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:-2px;right:-2px;width:8px;height:8px;border-radius:50%;background:#C0392B;border:1.5px solid #fff;"></div></sc-if>
+            </div>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.notifications }};">{{ t.nav.notifications }}</span>
+          </button>
+          <button onClick="{{ goSettings }}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:{{ navColor.settings }};">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="14" cy="7" r="2.1"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="17" r="2.1"/></svg>
+            <span style="font-size:10.5px;font-weight:{{ navWeight.settings }};">{{ t.nav.settings }}</span>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+  </x-import>
+  </sc-if>
+
+  <sc-if value="{{ showDesktop }}" hint-placeholder-val="{{ false }}">
+    <div style="width:100%;max-width:1440px;min-height:760px;background:#fff;border-radius:16px;border:1px solid #E3E6EB;box-shadow:0 20px 50px rgba(20,30,50,0.08);display:flex;overflow:hidden;">
+      <div style="width:232px;flex-shrink:0;background:#0E1E38;padding:24px 14px;display:flex;flex-direction:column;gap:2px;box-sizing:border-box;">
+        <div style="display:flex;align-items:center;gap:10px;padding:0 10px 22px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M9 3.5h6a1 1 0 0 1 1 1V6H8V4.5a1 1 0 0 1 1-1z"/><path d="M8.5 13l2.5 2.5L16 10"/></svg>
+          <span style="font-size:14.5px;font-weight:700;color:#fff;">{{ t.brand }}</span>
+        </div>
+        <button onClick="{{ goHome }}" style="height:42px;border-radius:10px;border:none;cursor:pointer;display:flex;align-items:center;gap:11px;padding:0 12px;background:{{ sideBg.home }};color:{{ sideColor.home }};">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9h5v-5h2v5h5v-9"/></svg>
+          <span style="font-size:13.5px;font-weight:600;">{{ t.nav.home }}</span>
+        </button>
+        <button onClick="{{ goSearch }}" style="height:42px;border-radius:10px;border:none;cursor:pointer;display:flex;align-items:center;gap:11px;padding:0 12px;background:{{ sideBg.search }};color:{{ sideColor.search }};">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+          <span style="font-size:13.5px;font-weight:600;">{{ t.nav.search }}</span>
+        </button>
+        <button onClick="{{ goNotifications }}" style="height:42px;border-radius:10px;border:none;cursor:pointer;display:flex;align-items:center;gap:11px;padding:0 12px;background:{{ sideBg.notifications }};color:{{ sideColor.notifications }};">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/><path d="M9.5 17a2.5 2.5 0 0 0 5 0"/></svg>
+          <span style="font-size:13.5px;font-weight:600;">{{ t.nav.notifications }}</span>
+          <sc-if value="{{ hasNotifBadge }}" hint-placeholder-val="{{ false }}"><div style="width:7px;height:7px;border-radius:50%;background:#E8827A;margin-left:auto;"></div></sc-if>
+        </button>
+        <button onClick="{{ goSettings }}" style="height:42px;border-radius:10px;border:none;cursor:pointer;display:flex;align-items:center;gap:11px;padding:0 12px;background:{{ sideBg.settings }};color:{{ sideColor.settings }};">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="14" cy="7" r="2.1"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="17" r="2.1"/></svg>
+          <span style="font-size:13.5px;font-weight:600;">{{ t.nav.settings }}</span>
+        </button>
+        <div style="flex:1;"></div>
+        <button onClick="{{ logout }}" style="height:42px;border-radius:10px;border:none;cursor:pointer;display:flex;align-items:center;gap:11px;padding:0 12px;background:transparent;color:rgba(255,255,255,0.55);">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h4v16h-4"/><path d="M11 8l-4 4 4 4"/><path d="M7 12h10"/></svg>
+          <span style="font-size:13.5px;font-weight:600;">{{ t.settings.logout }}</span>
+        </button>
+      </div>
+
+      <div style="flex:1;padding:32px 36px;box-sizing:border-box;overflow:auto;">
+
+        <sc-if value="{{ screenIs_home }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;">
+            <h1 style="font-size:24px;font-weight:700;color:#14161A;margin:0;">{{ t.desktop.dashboard }}</h1>
+            <button onClick="{{ goAddDevice }}" style="height:42px;padding:0 18px;border-radius:11px;background:#14294B;color:#fff;font-size:13.5px;font-weight:700;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              {{ t.desktop.addDevice }}
+            </button>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px;">
+            <div style="background:#F5F6F8;border-radius:14px;padding:18px 20px;">
+              <div style="font-size:26px;font-weight:700;color:#14161A;">{{ desktopStats.total }}</div>
+              <div style="font-size:12.5px;font-weight:600;color:#5B6472;margin-top:4px;">{{ t.home.total }}</div>
+            </div>
+            <div style="background:#FDF3E3;border-radius:14px;padding:18px 20px;">
+              <div style="font-size:26px;font-weight:700;color:#B9770E;">{{ desktopStats.soon }}</div>
+              <div style="font-size:12.5px;font-weight:600;color:#B9770E;margin-top:4px;">{{ t.home.soon }}</div>
+            </div>
+            <div style="background:#FBE9E7;border-radius:14px;padding:18px 20px;">
+              <div style="font-size:26px;font-weight:700;color:#C0392B;">{{ desktopStats.overdue }}</div>
+              <div style="font-size:12.5px;font-weight:600;color:#C0392B;margin-top:4px;">{{ t.home.overdue }}</div>
+            </div>
+          </div>
+
+          <sc-if value="{{ showError }}" hint-placeholder-val="{{ false }}">
+            <div style="border:1px solid #F3C7C1;background:#FBE9E7;border-radius:14px;padding:26px;display:flex;align-items:center;gap:16px;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C0392B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M12 3.5 21.5 20h-19z"/><line x1="12" y1="9.5" x2="12" y2="14"/><circle cx="12" cy="17.2" r="0.9" fill="#C0392B" stroke="none"/></svg>
+              <div style="flex:1;">
+                <div style="font-size:15px;font-weight:700;color:#14161A;">{{ t.error.h1 }}</div>
+                <div style="font-size:13px;font-weight:500;color:#5B6472;margin-top:4px;line-height:1.8;">{{ t.error.sub }}</div>
+              </div>
+              <button onClick="{{ toggleSimulateError }}" style="height:42px;padding:0 18px;border-radius:11px;background:#14294B;color:#fff;font-size:13px;font-weight:700;border:none;cursor:pointer;flex-shrink:0;">{{ t.error.retry }}</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ showEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="border:1px dashed #D7DCE3;border-radius:14px;padding:50px 30px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;">
+              <div style="font-size:16px;font-weight:700;color:#14161A;">{{ t.empty.h1 }}</div>
+              <div style="font-size:13.5px;font-weight:500;color:#5B6472;line-height:1.9;max-width:380px;">{{ t.empty.sub }}</div>
+              <button onClick="{{ goAddDevice }}" style="height:44px;padding:0 20px;border-radius:11px;background:#14294B;color:#fff;font-size:13.5px;font-weight:700;border:none;cursor:pointer;">{{ t.empty.cta }}</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ showDeviceList }}" hint-placeholder-val="{{ true }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;">
+              <sc-for list="{{ desktopDevices }}" as="item" hint-placeholder-count="4">
+                <div onClick="{{ item.openDetail }}" style="border:1px solid #E3E6EB;border-radius:14px;padding:16px;cursor:pointer;display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;">
+                    <div style="width:38px;height:38px;border-radius:10px;background:#F5F6F8;display:flex;align-items:center;justify-content:center;">
+                      <sc-if value="{{ item.isWater }}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3z"/></svg></sc-if>
+                      <sc-if value="{{ item.isAircon }}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h11a2.5 2.5 0 1 0-2.5-2.5"/><path d="M4 13h14a2.5 2.5 0 1 1-2.5 2.5"/><path d="M4 18h9"/></svg></sc-if>
+                      <sc-if value="{{ item.isPurifier }}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></sc-if>
+                      <sc-if value="{{ item.isVacuum }}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20h6"/><path d="M8 20V11a4 4 0 0 1 8 0v9"/><circle cx="12" cy="6" r="2.3"/></svg></sc-if>
+                    </div>
+                    <div style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:{{ item.statusBg }};color:{{ item.statusColor }};white-space:nowrap;">{{ item.statusLabel }}</div>
+                  </div>
+                  <div>
+                    <div style="font-size:13.5px;font-weight:700;color:#14161A;line-height:1.5;">{{ item.name }}</div>
+                    <div style="font-size:11.5px;font-weight:500;color:#5B6472;margin-top:2px;">{{ item.location }}</div>
+                  </div>
+                  <div style="font-size:11.5px;font-weight:600;color:#5B6472;border-top:1px solid #EDEFF2;padding-top:9px;">{{ t.desktop.nextDueCol }}: {{ item.nextDueDate }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </sc-if>
+
+        <sc-if value="{{ screenIs_settings }}" hint-placeholder-val="{{ false }}">
+          <h1 style="font-size:24px;font-weight:700;color:#14161A;margin:0 0 22px;">{{ t.settings.title }}</h1>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div style="background:#F5F6F8;border-radius:14px;padding:18px;">
+              <div style="font-size:12px;font-weight:700;color:#9AA3B0;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:12px;">{{ t.settings.account }}</div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:42px;height:42px;border-radius:50%;background:#EFF3F9;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+                </div>
+                <div>
+                  <div style="font-size:14px;font-weight:700;color:#14161A;">{{ accountName }}</div>
+                  <div style="font-size:12px;font-weight:500;color:#5B6472;">{{ accountEmail }}</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#F5F6F8;border-radius:14px;padding:18px;">
+              <div style="font-size:12px;font-weight:700;color:#9AA3B0;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:12px;">{{ t.settings.notifSection }}</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+                <span style="font-size:13px;font-weight:600;color:#14161A;">{{ t.settings.pushEnabled }}</span>
+                <button onClick="{{ togglePush }}" style="width:44px;height:25px;border-radius:20px;border:none;cursor:pointer;position:relative;background:{{ pushTrackBg }};">
+                  <div style="position:absolute;top:3px;left:{{ pushKnobLeft }};width:19px;height:19px;border-radius:50%;background:#fff;"></div>
+                </button>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <button onClick="{{ setLead3 }}" style="flex:1;height:32px;border-radius:9px;cursor:pointer;background:{{ leadDays3PillBg }};border:1.5px solid {{ leadDays3PillBorder }};color:{{ leadDays3PillColor }};font-size:12px;font-weight:700;">3d</button>
+                <button onClick="{{ setLead7 }}" style="flex:1;height:32px;border-radius:9px;cursor:pointer;background:{{ leadDays7PillBg }};border:1.5px solid {{ leadDays7PillBorder }};color:{{ leadDays7PillColor }};font-size:12px;font-weight:700;">7d</button>
+                <button onClick="{{ setLead14 }}" style="flex:1;height:32px;border-radius:9px;cursor:pointer;background:{{ leadDays14PillBg }};border:1.5px solid {{ leadDays14PillBorder }};color:{{ leadDays14PillColor }};font-size:12px;font-weight:700;">14d</button>
+              </div>
+            </div>
+
+            <div style="background:#F5F6F8;border-radius:14px;padding:18px;">
+              <div style="font-size:12px;font-weight:700;color:#9AA3B0;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:12px;">{{ t.settings.dataSection }}</div>
+              <div style="display:flex;flex-direction:column;gap:9px;">
+                <button onClick="{{ exportCsv }}" style="height:40px;border-radius:10px;background:#fff;border:1px solid #E3E6EB;color:#14161A;font-size:12.5px;font-weight:700;cursor:pointer;">{{ t.settings.exportCsv }}</button>
+                <button onClick="{{ resetSampleData }}" style="height:40px;border-radius:10px;background:#fff;border:1px solid #E3E6EB;color:#14161A;font-size:12.5px;font-weight:700;cursor:pointer;">{{ t.settings.resetSample }}</button>
+                <button onClick="{{ askClearAll }}" style="height:40px;border-radius:10px;background:#fff;border:1px solid #F3C7C1;color:#C0392B;font-size:12.5px;font-weight:700;cursor:pointer;">{{ t.settings.clearAll }}</button>
+              </div>
+              <sc-if value="{{ confirmingClearAll }}" hint-placeholder-val="{{ false }}">
+                <div style="background:#FBE9E7;border-radius:11px;padding:12px;margin-top:10px;display:flex;flex-direction:column;gap:9px;">
+                  <div style="font-size:12px;font-weight:700;color:#C0392B;">{{ t.settings.confirmClear }}</div>
+                  <div style="display:flex;gap:8px;">
+                    <button onClick="{{ cancelClearAll }}" style="flex:1;height:34px;border-radius:8px;background:#fff;border:1px solid #E3B0AA;color:#14161A;font-size:11.5px;font-weight:700;cursor:pointer;">{{ t.common.no }}</button>
+                    <button onClick="{{ confirmClearAllAction }}" style="flex:1;height:34px;border-radius:8px;background:#C0392B;border:none;color:#fff;font-size:11.5px;font-weight:700;cursor:pointer;">{{ t.common.yesDelete }}</button>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+
+            <div style="background:#F5F6F8;border-radius:14px;padding:18px;">
+              <div style="font-size:12px;font-weight:700;color:#9AA3B0;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:12px;">{{ t.settings.testSection }}</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:13px;font-weight:600;color:#14161A;">{{ t.settings.simulateError }}</span>
+                <button onClick="{{ toggleSimulateError }}" style="width:44px;height:25px;border-radius:20px;border:none;cursor:pointer;position:relative;background:{{ simTrackBg }};">
+                  <div style="position:absolute;top:3px;left:{{ simKnobLeft }};width:19px;height:19px;border-radius:50%;background:#fff;"></div>
+                </button>
+              </div>
+              <div style="font-size:11px;font-weight:500;color:#9AA3B0;margin-top:12px;">{{ t.settings.version }}</div>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+const TODAY_STR = '2026-07-04';
+const TH_MONTHS = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+const EN_MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+const TYPE_INFO = {
+  water:    { th: 'เครื่องกรองน้ำ',      en: 'Water Filter' },
+  aircon:   { th: 'เครื่องปรับอากาศ',    en: 'Air Conditioner' },
+  purifier: { th: 'เครื่องฟอกอากาศ',     en: 'Air Purifier' },
+  vacuum:   { th: 'เครื่องดูดฝุ่น',       en: 'Vacuum Cleaner' },
+};
+const TYPE_IMAGE = {
+  water: 'images/device-water-filter.png',
+  aircon: 'images/device-aircon-filter.png',
+  purifier: 'images/device-air-purifier-filter.png',
+  vacuum: 'images/device-vacuum-filter.png',
+};
+const TYPE_ORDER = ['water', 'aircon', 'purifier', 'vacuum'];
+
+const DEFAULT_DEVICES = [
+  { id: 'd1', type: 'aircon', nickname: 'แอร์ห้องนอนใหญ่', nicknameEn: 'Bedroom AC', brand: 'Mitsu-Cool AC-24', location: 'ห้องนอนใหญ่', locationEn: 'Master bedroom', cycleDays: 90, lastChanged: '2026-04-10', orderSlug: 'aircon-mitsu-ac24', note: '', noteEn: '' },
+  { id: 'd2', type: 'water', nickname: 'กรองน้ำใต้ซิงก์ครัว', nicknameEn: 'Kitchen sink water filter', brand: 'AquaPure RO-500', location: 'ห้องครัว', locationEn: 'Kitchen', cycleDays: 90, lastChanged: '2026-04-01', orderSlug: 'water-aquapure-ro500', note: 'เปลี่ยนตามรอบปกติ', noteEn: 'Changed on regular cycle' },
+  { id: 'd3', type: 'purifier', nickname: 'เครื่องฟอกอากาศห้องนั่งเล่น', nicknameEn: 'Living room air purifier', brand: 'PureAir HF-200', location: 'ห้องนั่งเล่น', locationEn: 'Living room', cycleDays: 60, lastChanged: '2026-06-16', orderSlug: 'purifier-pureair-hf200', note: '', noteEn: '' },
+  { id: 'd4', type: 'vacuum', nickname: 'เครื่องดูดฝุ่นไร้สาย', nicknameEn: 'Cordless vacuum', brand: 'CycloMax V8', location: 'ห้องเก็บของ', locationEn: 'Storage room', cycleDays: 120, lastChanged: '2026-01-10', orderSlug: 'vacuum-cyclomax-v8', note: '', noteEn: '' },
+];
+
+const STRINGS = {
+  th: {
+    brand: 'รอบดูแล', tagline: 'ผู้ช่วยจำรอบดูแลอุปกรณ์ในบ้าน',
+    langToggle: 'EN', viewMobile: 'มือถือ', viewDesktop: 'เดสก์ท็อป',
+    nav: { home: 'หน้าหลัก', search: 'ค้นหา', notifications: 'แจ้งเตือน', settings: 'ตั้งค่า' },
+    common: {
+      back: 'ย้อนกลับ', save: 'บันทึก', cancel: 'ยกเลิก', edit: 'แก้ไขข้อมูล', delete: 'ลบอุปกรณ์นี้',
+      confirmDelete: 'ยืนยันการลบ?', confirmDeleteSub: 'ประวัติการเปลี่ยนของอุปกรณ์นี้จะหายไปด้วย',
+      yesDelete: 'ลบเลย', no: 'ไม่ใช่ตอนนี้', requiredMark: 'จำเป็น', close: 'ปิด',
+    },
+    onboarding: {
+      h1: 'ไม่ลืมรอบดูแลอุปกรณ์ในบ้านอีกต่อไป',
+      sub: 'ลงทะเบียนอุปกรณ์ในบ้านได้ทุกชนิด ระบบคำนวณรอบเปลี่ยนไส้กรองหรือรอบดูแลถัดไปให้อัตโนมัติ แล้วเตือนก่อนถึงกำหนด',
+      bullet1: 'ลงทะเบียนอุปกรณ์ในบ้านได้ทุกชนิด', bullet2: 'คำนวณรอบดูแล-เปลี่ยนไส้กรองให้อัตโนมัติ', bullet3: 'แจ้งเตือนก่อนถึงกำหนดดูแลทุกครั้ง',
+      cta: 'เริ่มต้นใช้งาน', haveAccount: 'มีบัญชีอยู่แล้ว', login: 'เข้าสู่ระบบ',
+    },
+    auth: {
+      loginTitle: 'เข้าสู่ระบบ', loginSub: 'ลงชื่อเข้าใช้เพื่อดูอุปกรณ์ของคุณ',
+      signupTitle: 'สร้างบัญชีใหม่', signupSub: 'เริ่มลงทะเบียนอุปกรณ์ชิ้นแรกของคุณ',
+      name: 'ชื่อ-นามสกุล', namePh: 'เช่น สมชาย ใจดี',
+      email: 'อีเมล', emailPh: 'you@example.com',
+      password: 'รหัสผ่าน', confirmPassword: 'ยืนยันรหัสผ่าน',
+      loginCta: 'เข้าสู่ระบบ', signupCta: 'สร้างบัญชี',
+      noAccount: 'ยังไม่มีบัญชี', signupLink: 'สมัครสมาชิก', haveAccountLink: 'เข้าสู่ระบบ',
+      forgot: 'ลืมรหัสผ่าน?', forgotToast: 'ฟีเจอร์นี้จะเปิดให้ใช้งานเร็วๆ นี้',
+      errEmpty: 'กรอกอีเมลและรหัสผ่านให้ครบ', errMismatch: 'รหัสผ่านยืนยันไม่ตรงกัน', errAllFields: 'กรอกข้อมูลให้ครบทุกช่อง',
+      welcomeToast: 'เข้าสู่ระบบสำเร็จ ยินดีต้อนรับกลับมา', signupToast: 'สร้างบัญชีสำเร็จ เริ่มลงทะเบียนอุปกรณ์ได้เลย',
+    },
+    home: {
+      title: 'อุปกรณ์ของฉัน', addDevice: 'เพิ่มอุปกรณ์',
+      total: 'ทั้งหมด', soon: 'ใกล้ถึงรอบ', overdue: 'เกินกำหนด',
+      statusOk: 'ปกติ', statusSoon: 'ใกล้ถึงรอบ', statusOverdue: 'เกินกำหนด',
+      nextDue: 'เปลี่ยนถัดไป',
+    },
+    empty: { h1: 'ยังไม่มีอุปกรณ์ในระบบ', sub: 'เพิ่มเครื่องกรองน้ำ แอร์ เครื่องฟอกอากาศ หรือเครื่องดูดฝุ่น เพื่อเริ่มนับรอบเปลี่ยนไส้กรอง', cta: 'เพิ่มอุปกรณ์ชิ้นแรก' },
+    error: { h1: 'โหลดข้อมูลไม่สำเร็จ', sub: 'เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ในขณะนี้ ตรวจสอบอินเทอร์เน็ตแล้วลองอีกครั้ง', retry: 'ลองอีกครั้ง', code: 'รหัสข้อผิดพลาด: NET_TIMEOUT_504' },
+    addDevice: {
+      titleAdd: 'เพิ่มอุปกรณ์', titleEdit: 'แก้ไขอุปกรณ์',
+      subAdd: 'กรอกข้อมูลอุปกรณ์เพื่อเริ่มนับรอบเปลี่ยนไส้กรอง', subEdit: 'ปรับข้อมูลอุปกรณ์และรอบเปลี่ยน',
+      nickname: 'ชื่อเรียกอุปกรณ์', nicknamePh: 'เช่น กรองน้ำใต้ซิงก์ครัว',
+      type: 'ประเภทอุปกรณ์', brand: 'ยี่ห้อ / รุ่น', brandPh: 'ตัวอย่าง: AquaPure RO-500',
+      brandNote: 'ข้อมูลรุ่นเป็นตัวอย่าง กรอกยี่ห้อ-รุ่นจริงของคุณได้',
+      location: 'ตำแหน่งติดตั้ง (ไม่บังคับ)', locationPh: 'เช่น ห้องครัว',
+      lastChanged: 'วันที่เปลี่ยนล่าสุด', cycle: 'รอบเปลี่ยน (วัน)', cycleCustom: 'กำหนดเอง',
+      notes: 'หมายเหตุ (ไม่บังคับ)', notesPh: 'เช่น ซื้อไส้กรองสำรองไว้ล่วงหน้า',
+      submitAdd: 'บันทึกอุปกรณ์', submitEdit: 'บันทึกการแก้ไข',
+      errNickname: 'กรอกชื่อเรียกอุปกรณ์', errDate: 'เลือกวันที่เปลี่ยนล่าสุด', errCycle: 'กรอกรอบเปลี่ยนเป็นจำนวนวันที่มากกว่า 0',
+      addedToast: 'เพิ่มอุปกรณ์แล้ว', updatedToast: 'บันทึกการแก้ไขแล้ว',
+    },
+    detail: {
+      nextDue: 'กำหนดเปลี่ยนถัดไป', installedOn: 'เริ่มใช้งานตั้งแต่', lastChangedOn: 'เปลี่ยนล่าสุดเมื่อ',
+      markChanged: 'ทำเครื่องหมายว่าเปลี่ยนวันนี้', orderCta: 'สั่งซื้อไส้กรองรุ่นเดิม',
+      orderNote: 'ลิงก์ตัวอย่าง เปิดหน้าสั่งซื้อไส้กรองรุ่นเดียวกัน', history: 'ประวัติการเปลี่ยน',
+      historyAdded: 'ลงทะเบียนอุปกรณ์', historyChanged: 'เปลี่ยนไส้กรอง',
+      markedToast: 'บันทึกแล้ว เปลี่ยนไส้กรองวันนี้', deletedToast: 'ลบอุปกรณ์แล้ว',
+      daysLeft: (n) => `เหลืออีก ${n} วัน`, daysOverdue: (n) => `เกินกำหนดมาแล้ว ${n} วัน`, dueToday: 'ถึงกำหนดวันนี้',
+      cycleEvery: (n) => `ทุก ${n} วัน`, photoCaption: 'ภาพประกอบอุปกรณ์ (ตัวอย่าง)',
+    },
+    search: {
+      title: 'ค้นหาอุปกรณ์', placeholder: 'ค้นหาชื่ออุปกรณ์ ยี่ห้อ หรือตำแหน่ง',
+      statusAll: 'ทั้งหมด', typeAll: 'ทุกประเภท', results: (n) => `พบ ${n} รายการ`,
+      noResults: 'ไม่พบอุปกรณ์ที่ตรงกับคำค้นหา', noResultsSub: 'ลองเปลี่ยนคำค้นหาหรือล้างตัวกรอง', clearFilters: 'ล้างตัวกรอง',
+    },
+    notif: {
+      title: 'การแจ้งเตือน', empty: 'ไม่มีการแจ้งเตือนใหม่', emptySub: 'อุปกรณ์ทั้งหมดของคุณอยู่ในรอบปกติ',
+      view: 'ดูอุปกรณ์', snooze: 'เลื่อนแจ้งเตือน 7 วัน', snoozedToast: (n) => `เลื่อนแจ้งเตือน "${n}" ไป 7 วันแล้ว`,
+      soonMsg: (d) => `ใกล้ครบรอบเปลี่ยนใน ${d} วัน`, overdueMsg: (d) => `เกินกำหนดเปลี่ยนมาแล้ว ${d} วัน`,
+    },
+    settings: {
+      title: 'ตั้งค่า', account: 'บัญชีผู้ใช้', logout: 'ออกจากระบบ',
+      notifSection: 'การแจ้งเตือน', pushEnabled: 'แจ้งเตือนก่อนถึงกำหนด', leadTime: 'แจ้งล่วงหน้า',
+      leadDays: (n) => `${n} วัน`,
+      dataSection: 'ข้อมูล', exportCsv: 'ส่งออกรายการเป็น CSV', resetSample: 'รีเซ็ตข้อมูลตัวอย่าง', clearAll: 'ลบอุปกรณ์ทั้งหมด',
+      testSection: 'สำหรับทดสอบ', simulateError: 'จำลองข้อผิดพลาดของหน้าหลัก',
+      aboutSection: 'เกี่ยวกับแอป', version: 'เวอร์ชัน 1.0.0 (ตัวอย่าง)',
+      exportToast: 'ส่งออกไฟล์ device-list.csv แล้ว', resetToast: 'รีเซ็ตข้อมูลตัวอย่างแล้ว', clearToast: 'ลบอุปกรณ์ทั้งหมดแล้ว',
+      confirmClear: 'ยืนยันการลบอุปกรณ์ทั้งหมด?', confirmClearSub: 'ใช้สำหรับทดสอบสถานะ "ยังไม่มีอุปกรณ์" เท่านั้น',
+    },
+    desktop: { dashboard: 'ภาพรวมอุปกรณ์', addDevice: 'เพิ่มอุปกรณ์', device: 'อุปกรณ์', status: 'สถานะ', nextDueCol: 'เปลี่ยนถัดไป', locationCol: 'ตำแหน่ง', actionCol: 'จัดการ', view: 'ดูรายละเอียด' },
+  },
+  en: {
+    brand: 'CareCycle', tagline: 'Your home appliance care assistant',
+    langToggle: 'TH', viewMobile: 'Mobile', viewDesktop: 'Desktop',
+    nav: { home: 'Home', search: 'Search', notifications: 'Alerts', settings: 'Settings' },
+    common: {
+      back: 'Back', save: 'Save', cancel: 'Cancel', edit: 'Edit device', delete: 'Delete this device',
+      confirmDelete: 'Delete this device?', confirmDeleteSub: 'Its change history will be removed too.',
+      yesDelete: 'Delete', no: 'Not now', requiredMark: 'Required', close: 'Close',
+    },
+    onboarding: {
+      h1: 'Never miss your home appliances\u2019 care cycle again',
+      sub: 'Register any kind of home appliance \u2014 we\u2019ll work out the next filter change or care cycle automatically and remind you before it\u2019s due.',
+      bullet1: 'Register any kind of home appliance', bullet2: 'Auto-calculate its care or filter-change cycle', bullet3: 'Get reminded before every due date',
+      cta: 'Get started', haveAccount: 'Already have an account', login: 'Log in',
+    },
+    auth: {
+      loginTitle: 'Log in', loginSub: 'Sign in to see your devices',
+      signupTitle: 'Create your account', signupSub: 'Start by registering your first device',
+      name: 'Full name', namePh: 'e.g. Alex Rivera',
+      email: 'Email', emailPh: 'you@example.com',
+      password: 'Password', confirmPassword: 'Confirm password',
+      loginCta: 'Log in', signupCta: 'Create account',
+      noAccount: 'No account yet', signupLink: 'Sign up', haveAccountLink: 'Log in',
+      forgot: 'Forgot password?', forgotToast: 'This feature is coming soon',
+      errEmpty: 'Enter your email and password', errMismatch: 'Passwords don\u2019t match', errAllFields: 'Fill in every field',
+      welcomeToast: 'Logged in \u2014 welcome back', signupToast: 'Account created \u2014 start registering devices',
+    },
+    home: {
+      title: 'My devices', addDevice: 'Add device',
+      total: 'Total', soon: 'Due soon', overdue: 'Overdue',
+      statusOk: 'On track', statusSoon: 'Due soon', statusOverdue: 'Overdue',
+      nextDue: 'Next change',
+    },
+    empty: { h1: 'No devices yet', sub: 'Add a water filter, AC, air purifier or vacuum to start tracking its filter cycle', cta: 'Add your first device' },
+    error: { h1: 'Couldn\u2019t load your devices', sub: 'We can\u2019t reach the server right now. Check your connection and try again.', retry: 'Try again', code: 'Error code: NET_TIMEOUT_504' },
+    addDevice: {
+      titleAdd: 'Add device', titleEdit: 'Edit device',
+      subAdd: 'Enter the device details to start tracking its filter cycle', subEdit: 'Update the device details and cycle',
+      nickname: 'Device name', nicknamePh: 'e.g. Kitchen sink water filter',
+      type: 'Device type', brand: 'Brand / model', brandPh: 'e.g. AquaPure RO-500',
+      brandNote: 'Sample model shown \u2014 enter your own brand and model',
+      location: 'Location (optional)', locationPh: 'e.g. Kitchen',
+      lastChanged: 'Last changed on', cycle: 'Change cycle (days)', cycleCustom: 'Custom',
+      notes: 'Notes (optional)', notesPh: 'e.g. Bought a spare filter in advance',
+      submitAdd: 'Save device', submitEdit: 'Save changes',
+      errNickname: 'Enter a device name', errDate: 'Pick the last-changed date', errCycle: 'Enter a cycle length greater than 0 days',
+      addedToast: 'Device added', updatedToast: 'Changes saved',
+    },
+    detail: {
+      nextDue: 'Next change due', installedOn: 'Registered on', lastChangedOn: 'Last changed on',
+      markChanged: 'Mark as changed today', orderCta: 'Order the same filter',
+      orderNote: 'Sample link \u2014 opens the order page for this exact model', history: 'Change history',
+      historyAdded: 'Device registered', historyChanged: 'Filter changed',
+      markedToast: 'Saved \u2014 filter changed today', deletedToast: 'Device deleted',
+      daysLeft: (n) => `${n} days left`, daysOverdue: (n) => `${n} days overdue`, dueToday: 'Due today',
+      cycleEvery: (n) => `Every ${n} days`, photoCaption: 'Device illustration (sample)',
+    },
+    search: {
+      title: 'Search devices', placeholder: 'Search by name, brand or location',
+      statusAll: 'All statuses', typeAll: 'All types', results: (n) => `${n} results`,
+      noResults: 'No devices match your search', noResultsSub: 'Try a different search or clear the filters', clearFilters: 'Clear filters',
+    },
+    notif: {
+      title: 'Alerts', empty: 'No new alerts', emptySub: 'All your devices are on a normal cycle',
+      view: 'View device', snooze: 'Snooze 7 days', snoozedToast: (n) => `Snoozed "${n}" for 7 days`,
+      soonMsg: (d) => `Due for a change in ${d} days`, overdueMsg: (d) => `${d} days overdue for a change`,
+    },
+    settings: {
+      title: 'Settings', account: 'Account', logout: 'Log out',
+      notifSection: 'Notifications', pushEnabled: 'Remind me before it\u2019s due', leadTime: 'Lead time',
+      leadDays: (n) => `${n} days`,
+      dataSection: 'Data', exportCsv: 'Export list as CSV', resetSample: 'Reset sample data', clearAll: 'Delete all devices',
+      testSection: 'For testing', simulateError: 'Simulate home screen error',
+      aboutSection: 'About', version: 'Version 1.0.0 (sample)',
+      exportToast: 'Exported device-list.csv', resetToast: 'Sample data reset', clearToast: 'All devices deleted',
+      confirmClear: 'Delete all devices?', confirmClearSub: 'Used to test the "no devices" empty state only.',
+    },
+    desktop: { dashboard: 'Device overview', addDevice: 'Add device', device: 'Device', status: 'Status', nextDueCol: 'Next change', locationCol: 'Location', actionCol: 'Actions', view: 'View details' },
+  },
+};
+
+class Component extends DCLogic {
+  state = {
+    lang: 'th',
+    screen: 'onboarding',
+    devices: null,
+    selectedId: null,
+    editingId: null,
+    confirmingDelete: false,
+    confirmingClearAll: false,
+    desktopMode: false,
+    toast: null,
+    authForm: { name: '', email: '', password: '', confirmPassword: '' },
+    authError: '',
+    form: { nickname: '', type: 'water', brand: '', location: '', lastChanged: TODAY_STR, cycleDays: 90, cycleCustom: '', useCustomCycle: false, notes: '' },
+    formErrors: {},
+    query: '',
+    statusFilter: 'all',
+    typeFilter: 'all',
+    pushEnabled: true,
+    reminderLeadDays: 7,
+    simulateError: false,
+  };
+
+  componentDidMount() {
+    try {
+      const raw = localStorage.getItem('filterCycle.devices');
+      const lang = localStorage.getItem('filterCycle.lang');
+      this.setState({
+        devices: raw ? JSON.parse(raw) : DEFAULT_DEVICES.slice(),
+        lang: lang === 'en' ? 'en' : 'th',
+      });
+    } catch (e) {
+      this.setState({ devices: DEFAULT_DEVICES.slice() });
+    }
+  }
+
+  persist(devices) {
+    try { localStorage.setItem('filterCycle.devices', JSON.stringify(devices)); } catch (e) {}
+  }
+
+  showToast(msg) {
+    if (this._toastTimer) clearTimeout(this._toastTimer);
+    this.setState({ toast: msg });
+    this._toastTimer = setTimeout(() => this.setState({ toast: null }), 2800);
+  }
+
+  parseDate(str) { return new Date(str + 'T00:00:00'); }
+  today() { return this.parseDate(TODAY_STR); }
+  addDays(date, n) { const d = new Date(date); d.setDate(d.getDate() + n); return d; }
+  diffDays(a, b) { return Math.round((a - b) / 86400000); }
+
+  fmtDate(date, lang) {
+    const m = date.getMonth();
+    if (lang === 'en') return `${EN_MONTHS[m]} ${date.getDate()}, ${date.getFullYear()}`;
+    return `${date.getDate()} ${TH_MONTHS[m]} ${date.getFullYear() + 543}`;
+  }
+
+  computeStatus(device) {
+    const last = this.parseDate(device.lastChanged);
+    const nextDue = this.addDays(last, device.cycleDays);
+    const daysDiff = this.diffDays(nextDue, this.today());
+    let key = 'ok';
+    if (daysDiff < 0) key = 'overdue'; else if (daysDiff <= 14) key = 'soon';
+    const elapsed = this.diffDays(this.today(), last);
+    const percent = Math.min(1, Math.max(0, elapsed / device.cycleDays));
+    return { key, daysDiff, nextDue, percent };
+  }
+
+  go(screen, extra) {
+    this.setState(Object.assign({ screen, confirmingDelete: false }, extra || {}));
+  }
+
+  toggleLang() {
+    const lang = this.state.lang === 'th' ? 'en' : 'th';
+    try { localStorage.setItem('filterCycle.lang', lang); } catch (e) {}
+    this.setState({ lang });
+  }
+
+  toggleDesktop() { this.setState({ desktopMode: !this.state.desktopMode }); }
+
+  // ---------- auth ----------
+  setAuthField(field, value) {
+    this.setState({ authForm: Object.assign({}, this.state.authForm, { [field]: value }), authError: '' });
+  }
+  submitLogin() {
+    const t = STRINGS[this.state.lang].auth;
+    const { email, password } = this.state.authForm;
+    if (!email.trim() || !password.trim()) { this.setState({ authError: t.errEmpty }); return; }
+    this.showToast(t.welcomeToast);
+    this.go('home');
+  }
+  submitSignup() {
+    const t = STRINGS[this.state.lang].auth;
+    const { name, email, password, confirmPassword } = this.state.authForm;
+    if (!name.trim() || !email.trim() || !password.trim() || !confirmPassword.trim()) { this.setState({ authError: t.errAllFields }); return; }
+    if (password !== confirmPassword) { this.setState({ authError: t.errMismatch }); return; }
+    this.showToast(t.signupToast);
+    this.go('home');
+  }
+  logout() {
+    this.setState({ authForm: { name: '', email: '', password: '', confirmPassword: '' }, authError: '' });
+    this.go('login');
+  }
+
+  // ---------- device form ----------
+  openAddForm() {
+    this.setState({
+      editingId: null,
+      form: { nickname: '', type: 'water', brand: '', location: '', lastChanged: TODAY_STR, cycleDays: 90, cycleCustom: '', useCustomCycle: false, notes: '' },
+      formErrors: {},
+      screen: 'addDevice',
+    });
+  }
+  openEditForm(id) {
+    const d = this.state.devices.find(x => x.id === id);
+    if (!d) return;
+    const preset = [30, 60, 90, 180].includes(d.cycleDays);
+    this.setState({
+      editingId: id,
+      form: {
+        nickname: this.state.lang === 'en' ? (d.nicknameEn || d.nickname) : d.nickname,
+        type: d.type, brand: d.brand,
+        location: this.state.lang === 'en' ? (d.locationEn || d.location) : d.location,
+        lastChanged: d.lastChanged, cycleDays: preset ? d.cycleDays : 90,
+        cycleCustom: preset ? '' : String(d.cycleDays), useCustomCycle: !preset,
+        notes: (this.state.lang === 'en' ? (d.noteEn || d.note) : d.note) || '',
+      },
+      formErrors: {},
+      screen: 'addDevice',
+    });
+  }
+  setFormField(field, value) {
+    this.setState({ form: Object.assign({}, this.state.form, { [field]: value }), formErrors: Object.assign({}, this.state.formErrors, { [field]: null }) });
+  }
+  cancelForm() {
+    if (this.state.editingId) this.go('detail', { selectedId: this.state.editingId });
+    else this.go('home');
+  }
+  submitForm() {
+    const t = STRINGS[this.state.lang].addDevice;
+    const f = this.state.form;
+    const errors = {};
+    if (!f.nickname.trim()) errors.nickname = t.errNickname;
+    if (!f.lastChanged) errors.lastChanged = t.errDate;
+    const cycle = f.useCustomCycle ? parseInt(f.cycleCustom, 10) : f.cycleDays;
+    if (!cycle || cycle <= 0) errors.cycleDays = t.errCycle;
+    if (Object.keys(errors).length) { this.setState({ formErrors: errors }); return; }
+
+    const devices = this.state.devices.slice();
+    if (this.state.editingId) {
+      const idx = devices.findIndex(x => x.id === this.state.editingId);
+      const prev = devices[idx];
+      devices[idx] = Object.assign({}, prev, {
+        nickname: f.nickname, nicknameEn: f.nickname,
+        type: f.type, brand: f.brand, location: f.location, locationEn: f.location,
+        lastChanged: f.lastChanged, cycleDays: cycle,
+        note: f.notes, noteEn: f.notes,
+      });
+      this.persist(devices);
+      this.setState({ devices, screen: 'detail', selectedId: this.state.editingId });
+      this.showToast(t.updatedToast);
+    } else {
+      const id = 'd' + Date.now();
+      devices.push({
+        id, type: f.type, nickname: f.nickname, nicknameEn: f.nickname,
+        brand: f.brand, location: f.location, locationEn: f.location,
+        cycleDays: cycle, lastChanged: f.lastChanged, orderSlug: f.type + '-custom-' + id,
+        note: f.notes, noteEn: f.notes,
+      });
+      this.persist(devices);
+      this.setState({ devices, screen: 'detail', selectedId: id });
+      this.showToast(t.addedToast);
+    }
+  }
+
+  markChangedToday(id) {
+    const devices = this.state.devices.map(d => d.id === id ? Object.assign({}, d, { lastChanged: TODAY_STR }) : d);
+    this.persist(devices);
+    this.setState({ devices });
+    this.showToast(STRINGS[this.state.lang].detail.markedToast);
+  }
+  deleteDevice(id) {
+    const devices = this.state.devices.filter(d => d.id !== id);
+    this.persist(devices);
+    this.setState({ devices, screen: 'home', confirmingDelete: false });
+    this.showToast(STRINGS[this.state.lang].detail.deletedToast);
+  }
+  snoozeNotification(id) {
+    const devices = this.state.devices.map(d => d.id === id ? Object.assign({}, d, { snoozeUntil: TODAY_STR }) : d);
+    // snooze effect: push lastChanged reference window by treating as if checked; store separate flag date+7d
+    const target = this.state.devices.find(d => d.id === id);
+    const snoozedUntil = this.fmtDate(this.addDays(this.today(), 7), this.state.lang);
+    const list = this.state.devices.map(d => d.id === id ? Object.assign({}, d, { snoozeUntil: TODAY_STR }) : d);
+    this.persist(list);
+    this.setState({ devices: list });
+    const name = this.state.lang === 'en' ? (target.nicknameEn || target.nickname) : target.nickname;
+    this.showToast(STRINGS[this.state.lang].notif.snoozedToast(name));
+  }
+
+  resetSampleData() {
+    const fresh = DEFAULT_DEVICES.slice();
+    this.persist(fresh);
+    this.setState({ devices: fresh });
+    this.showToast(STRINGS[this.state.lang].settings.resetToast);
+  }
+  clearAllDevices() {
+    this.persist([]);
+    this.setState({ devices: [], screen: 'home' });
+    this.showToast(STRINGS[this.state.lang].settings.clearToast);
+  }
+  exportCsv() {
+    const lang = this.state.lang;
+    const rows = [['nickname', 'type', 'brand', 'location', 'last_changed', 'cycle_days', 'next_due', 'status']];
+    (this.state.devices || []).forEach(d => {
+      const s = this.computeStatus(d);
+      rows.push([
+        lang === 'en' ? (d.nicknameEn || d.nickname) : d.nickname,
+        TYPE_INFO[d.type][lang], d.brand,
+        lang === 'en' ? (d.locationEn || d.location) : d.location,
+        d.lastChanged, d.cycleDays, this.fmtDate(s.nextDue, lang), s.key,
+      ]);
+    });
+    const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'device-list.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    this.showToast(STRINGS[lang].settings.exportToast);
+  }
+
+  buildDeviceView(d, lang, t) {
+    const s = this.computeStatus(d);
+    const name = lang === 'en' ? (d.nicknameEn || d.nickname) : d.nickname;
+    const location = lang === 'en' ? (d.locationEn || d.location) : d.location;
+    const note = lang === 'en' ? (d.noteEn || d.note) : d.note;
+    const statusLabel = s.key === 'ok' ? t.home.statusOk : s.key === 'soon' ? t.home.statusSoon : t.home.statusOverdue;
+    const statusColor = s.key === 'ok' ? '#1E8E5A' : s.key === 'soon' ? '#B9770E' : '#C0392B';
+    const statusBg = s.key === 'ok' ? '#E7F5EE' : s.key === 'soon' ? '#FDF3E3' : '#FBE9E7';
+    const dueText = s.key === 'overdue' ? t.detail.daysOverdue(Math.abs(s.daysDiff)) : s.daysDiff === 0 ? t.detail.dueToday : t.detail.daysLeft(s.daysDiff);
+    const circumferenceSmall = 2 * Math.PI * 22;
+    const circumferenceBig = 2 * Math.PI * 54;
+    return {
+      id: d.id, name, brand: d.brand, location, note, type: d.type,
+      typeLabel: TYPE_INFO[d.type][lang], image: TYPE_IMAGE[d.type],
+      isWater: d.type === 'water', isAircon: d.type === 'aircon', isPurifier: d.type === 'purifier', isVacuum: d.type === 'vacuum',
+      statusKey: s.key, statusLabel, statusColor, statusBg,
+      isOverdue: s.key === 'overdue', isSoon: s.key === 'soon', isOk: s.key === 'ok',
+      dueText, nextDueDate: this.fmtDate(s.nextDue, lang),
+      lastChangedDate: this.fmtDate(this.parseDate(d.lastChanged), lang),
+      cycleDays: d.cycleDays, cycleText: t.detail.cycleEvery(d.cycleDays),
+      ringOffsetSmall: circumferenceSmall * (1 - s.percent), ringOffsetBig: circumferenceBig * (1 - s.percent),
+      orderUrl: 'https://shop-example.th/filters/' + d.orderSlug,
+      sortKey: (s.key === 'overdue' ? 0 : s.key === 'soon' ? 1 : 2) * 100000 + s.daysDiff,
+      snoozed: !!d.snoozeUntil,
+      openDetail: () => this.go('detail', { selectedId: d.id }),
+    };
+  }
+
+  renderVals() {
+    const lang = this.state.lang;
+    const t = STRINGS[lang];
+    const devices = this.state.devices || [];
+    const loaded = this.state.devices !== null;
+
+    const views = devices.map(d => this.buildDeviceView(d, lang, t)).sort((a, b) => a.sortKey - b.sortKey);
+
+    const query = this.state.query.trim().toLowerCase();
+    const searchResults = views.filter(v => {
+      if (this.state.statusFilter !== 'all' && v.statusKey !== this.state.statusFilter) return false;
+      if (this.state.typeFilter !== 'all' && v.type !== this.state.typeFilter) return false;
+      if (query && !(v.name.toLowerCase().includes(query) || v.brand.toLowerCase().includes(query) || v.location.toLowerCase().includes(query))) return false;
+      return true;
+    });
+
+    const notifBase = views.filter(v => (v.statusKey === 'soon' || v.statusKey === 'overdue') && !v.snoozed);
+    const notificationsView = notifBase.map(v => ({
+      id: v.id, deviceId: v.id, name: v.name, typeLabel: v.typeLabel,
+      message: v.statusKey === 'overdue' ? t.notif.overdueMsg(Math.abs(this.computeStatus(devices.find(d => d.id === v.id)).daysDiff)) : t.notif.soonMsg(this.computeStatus(devices.find(d => d.id === v.id)).daysDiff),
+      severity: v.statusKey, severityColor: v.statusColor, severityBg: v.statusBg, severityLabel: v.statusLabel,
+      openDetail: () => this.go('detail', { selectedId: v.id }),
+      snooze: () => this.snoozeNotification(v.id),
+    }));
+
+    const selectedDevice = devices.find(d => d.id === this.state.selectedId) || devices[0];
+    const selectedView = selectedDevice ? this.buildDeviceView(selectedDevice, lang, t) : null;
+    let historyView = [];
+    if (selectedDevice) {
+      const installedDate = this.fmtDate(this.parseDate(selectedDevice.lastChanged), lang);
+      historyView = [{ date: selectedView.lastChangedDate, label: t.detail.historyChanged, isLatest: true }];
+      if (selectedDevice.lastChanged !== TODAY_STR || true) {
+        // synthetic registration entry, cycle before the last change for context
+        const before = this.fmtDate(this.addDays(this.parseDate(selectedDevice.lastChanged), -selectedDevice.cycleDays), lang);
+        historyView.push({ date: before, label: t.detail.historyAdded, isLatest: false });
+      }
+    }
+
+    const total = views.length;
+    const soonCount = views.filter(v => v.statusKey === 'soon').length;
+    const overdueCount = views.filter(v => v.statusKey === 'overdue').length;
+
+    const cyclePresets = [30, 60, 90, 180];
+    const form = this.state.form;
+
+    const ACTIVE_BG = '#EFF3F9', ACTIVE_BORDER = '#14294B', ACTIVE_COLOR = '#14294B';
+    const INACTIVE_BG = '#fff', INACTIVE_BORDER = '#E3E6EB', INACTIVE_COLOR = '#5B6472';
+    const pill = (active) => ({ bg: active ? ACTIVE_BG : INACTIVE_BG, border: active ? ACTIVE_BORDER : INACTIVE_BORDER, color: active ? ACTIVE_COLOR : INACTIVE_COLOR });
+    const pillFields = (prefix, active) => {
+      const p = pill(active);
+      return { [prefix + 'Bg']: p.bg, [prefix + 'Border']: p.border, [prefix + 'Color']: p.color };
+    };
+    const pillStyles = Object.assign(
+      {},
+      pillFields('formTypeWater', form.type === 'water'),
+      pillFields('formTypeAircon', form.type === 'aircon'),
+      pillFields('formTypePurifier', form.type === 'purifier'),
+      pillFields('formTypeVacuum', form.type === 'vacuum'),
+      pillFields('formCycle30Pill', !form.useCustomCycle && form.cycleDays === 30),
+      pillFields('formCycle60Pill', !form.useCustomCycle && form.cycleDays === 60),
+      pillFields('formCycle90Pill', !form.useCustomCycle && form.cycleDays === 90),
+      pillFields('formCycle180Pill', !form.useCustomCycle && form.cycleDays === 180),
+      pillFields('formCycleCustomPill', form.useCustomCycle),
+      pillFields('statusAllPill', this.state.statusFilter === 'all'),
+      pillFields('statusSoonPill', this.state.statusFilter === 'soon'),
+      pillFields('statusOverduePill', this.state.statusFilter === 'overdue'),
+      pillFields('statusOkPill', this.state.statusFilter === 'ok'),
+      pillFields('typeAllPill', this.state.typeFilter === 'all'),
+      pillFields('typeWaterPill', this.state.typeFilter === 'water'),
+      pillFields('typeAirconPill', this.state.typeFilter === 'aircon'),
+      pillFields('typePurifierPill', this.state.typeFilter === 'purifier'),
+      pillFields('typeVacuumPill', this.state.typeFilter === 'vacuum'),
+      pillFields('leadDays3Pill', this.state.reminderLeadDays === 3),
+      pillFields('leadDays7Pill', this.state.reminderLeadDays === 7),
+      pillFields('leadDays14Pill', this.state.reminderLeadDays === 14)
+    );
+
+    const isTabScreen = ['home', 'search', 'notifications', 'settings'].indexOf(this.state.screen) !== -1;
+    const isDesktopCapable = this.state.screen === 'home' || this.state.screen === 'settings';
+    const showDesktop = this.state.desktopMode && isDesktopCapable;
+    const ACTIVE = '#14294B', INACTIVE = '#9AA3B0';
+    const navColor = {
+      home: this.state.screen === 'home' ? ACTIVE : INACTIVE,
+      search: this.state.screen === 'search' ? ACTIVE : INACTIVE,
+      notifications: this.state.screen === 'notifications' ? ACTIVE : INACTIVE,
+      settings: this.state.screen === 'settings' ? ACTIVE : INACTIVE,
+    };
+    const navWeight = {
+      home: this.state.screen === 'home' ? 700 : 500,
+      search: this.state.screen === 'search' ? 700 : 500,
+      notifications: this.state.screen === 'notifications' ? 700 : 500,
+      settings: this.state.screen === 'settings' ? 700 : 500,
+    };
+    const sideBg = {
+      home: this.state.screen === 'home' ? 'rgba(255,255,255,0.1)' : 'transparent',
+      search: this.state.screen === 'search' ? 'rgba(255,255,255,0.1)' : 'transparent',
+      notifications: this.state.screen === 'notifications' ? 'rgba(255,255,255,0.1)' : 'transparent',
+      settings: this.state.screen === 'settings' ? 'rgba(255,255,255,0.1)' : 'transparent',
+    };
+    const sideColor = {
+      home: this.state.screen === 'home' ? '#fff' : 'rgba(255,255,255,0.55)',
+      search: this.state.screen === 'search' ? '#fff' : 'rgba(255,255,255,0.55)',
+      notifications: this.state.screen === 'notifications' ? '#fff' : 'rgba(255,255,255,0.55)',
+      settings: this.state.screen === 'settings' ? '#fff' : 'rgba(255,255,255,0.55)',
+    };
+
+    return {
+      lang, t, isDark: this.state.screen === 'onboarding',
+      toggleLang: () => this.toggleLang(),
+      toggleDesktop: () => this.toggleDesktop(),
+      isDesktopCapable, showDesktop, showMobile: !showDesktop,
+      toast: this.state.toast, navColor, navWeight, sideBg, sideColor,
+      hasNotifBadge: notifBase.length > 0,
+
+      screenIs_onboarding: this.state.screen === 'onboarding',
+      screenIs_login: this.state.screen === 'login',
+      screenIs_signup: this.state.screen === 'signup',
+      screenIs_home: this.state.screen === 'home',
+      screenIs_addDevice: this.state.screen === 'addDevice',
+      screenIs_detail: this.state.screen === 'detail',
+      screenIs_search: this.state.screen === 'search',
+      screenIs_notifications: this.state.screen === 'notifications',
+      screenIs_settings: this.state.screen === 'settings',
+
+      goOnboardingCta: () => this.go('login'),
+      goLogin: () => this.go('login'),
+      goSignup: () => this.go('signup'),
+      goHome: () => this.go('home'),
+      goSearch: () => this.go('search'),
+      goNotifications: () => this.go('notifications'),
+      goSettings: () => this.go('settings'),
+      goAddDevice: () => this.openAddForm(),
+      goDetail: (id) => this.go('detail', { selectedId: id }),
+
+      authForm: this.state.authForm, authError: this.state.authError,
+      setAuthName: (e) => this.setAuthField('name', e.target.value),
+      setAuthEmail: (e) => this.setAuthField('email', e.target.value),
+      setAuthPassword: (e) => this.setAuthField('password', e.target.value),
+      setAuthConfirmPassword: (e) => this.setAuthField('confirmPassword', e.target.value),
+      submitLogin: () => this.submitLogin(),
+      submitSignup: () => this.submitSignup(),
+      forgotPassword: () => this.showToast(t.auth.forgotToast),
+
+      loaded,
+      hasDevices: total > 0,
+      showEmpty: loaded && total === 0 && !this.state.simulateError,
+      showError: this.state.simulateError,
+      showDeviceList: loaded && total > 0 && !this.state.simulateError,
+      devicesView: views,
+      total, soonCount, overdueCount,
+
+      searchResults, searchCount: searchResults.length,
+      query: this.state.query, setQuery: (e) => this.setState({ query: e.target.value }),
+      statusFilter: this.state.statusFilter,
+      typeFilter: this.state.typeFilter,
+      statusFilterAll: this.state.statusFilter === 'all', statusFilterSoon: this.state.statusFilter === 'soon', statusFilterOverdue: this.state.statusFilter === 'overdue', statusFilterOk: this.state.statusFilter === 'ok',
+      typeFilterAll: this.state.typeFilter === 'all', typeFilterWater: this.state.typeFilter === 'water', typeFilterAircon: this.state.typeFilter === 'aircon', typeFilterPurifier: this.state.typeFilter === 'purifier', typeFilterVacuum: this.state.typeFilter === 'vacuum',
+      setStatusAll: () => this.setState({ statusFilter: 'all' }),
+      setStatusSoon: () => this.setState({ statusFilter: 'soon' }),
+      setStatusOverdue: () => this.setState({ statusFilter: 'overdue' }),
+      setStatusOk: () => this.setState({ statusFilter: 'ok' }),
+      setTypeFilterAll: () => this.setState({ typeFilter: 'all' }),
+      setTypeFilterWater: () => this.setState({ typeFilter: 'water' }),
+      setTypeFilterAircon: () => this.setState({ typeFilter: 'aircon' }),
+      setTypeFilterPurifier: () => this.setState({ typeFilter: 'purifier' }),
+      setTypeFilterVacuum: () => this.setState({ typeFilter: 'vacuum' }),
+      clearFilters: () => this.setState({ query: '', statusFilter: 'all', typeFilter: 'all' }),
+      hasSearchResults: searchResults.length > 0,
+      noSearchResults: searchResults.length === 0,
+
+      notificationsView, hasNotifications: notificationsView.length > 0, noNotifications: notificationsView.length === 0,
+      snoozeNotification: (id) => this.snoozeNotification(id),
+
+      selectedDevice: selectedView, historyView,
+      confirmingDelete: this.state.confirmingDelete,
+      notConfirmingDelete: !this.state.confirmingDelete,
+      askDelete: () => this.setState({ confirmingDelete: true }),
+      cancelDelete: () => this.setState({ confirmingDelete: false }),
+      confirmDelete: () => this.deleteDevice(this.state.selectedId),
+      markChangedToday: () => this.markChangedToday(this.state.selectedId),
+      editSelected: () => this.openEditForm(this.state.selectedId),
+
+      form, formErrors: this.state.formErrors,
+      isEditing: !!this.state.editingId,
+      isAdding: !this.state.editingId,
+      formTitle: this.state.editingId ? t.addDevice.titleEdit : t.addDevice.titleAdd,
+      formSub: this.state.editingId ? t.addDevice.subEdit : t.addDevice.subAdd,
+      formSubmitLabel: this.state.editingId ? t.addDevice.submitEdit : t.addDevice.submitAdd,
+      nicknameBorder: this.state.formErrors.nickname ? '#C0392B' : '#E3E6EB',
+      lastChangedBorder: this.state.formErrors.lastChanged ? '#C0392B' : '#E3E6EB',
+      cycleBorder: this.state.formErrors.cycleDays ? '#C0392B' : '#E3E6EB',
+      setNickname: (e) => this.setFormField('nickname', e.target.value),
+      setBrand: (e) => this.setFormField('brand', e.target.value),
+      setLocation: (e) => this.setFormField('location', e.target.value),
+      setLastChanged: (e) => this.setFormField('lastChanged', e.target.value),
+      setNotes: (e) => this.setFormField('notes', e.target.value),
+      setTypeWater: () => this.setFormField('type', 'water'),
+      setTypeAircon: () => this.setFormField('type', 'aircon'),
+      setTypePurifier: () => this.setFormField('type', 'purifier'),
+      setTypeVacuum: () => this.setFormField('type', 'vacuum'),
+      setCycle30: () => this.setState({ form: Object.assign({}, form, { cycleDays: 30, useCustomCycle: false }) }),
+      setCycle60: () => this.setState({ form: Object.assign({}, form, { cycleDays: 60, useCustomCycle: false }) }),
+      setCycle90: () => this.setState({ form: Object.assign({}, form, { cycleDays: 90, useCustomCycle: false }) }),
+      setCycle180: () => this.setState({ form: Object.assign({}, form, { cycleDays: 180, useCustomCycle: false }) }),
+      setCycleCustom: (e) => this.setState({ form: Object.assign({}, form, { cycleCustom: e.target.value, useCustomCycle: true }) }),
+      cyclePresets, submitForm: () => this.submitForm(), cancelForm: () => this.cancelForm(),
+      formTypeWater: form.type === 'water', formTypeAircon: form.type === 'aircon', formTypePurifier: form.type === 'purifier', formTypeVacuum: form.type === 'vacuum',
+      formCycle30: !form.useCustomCycle && form.cycleDays === 30,
+      formCycle60: !form.useCustomCycle && form.cycleDays === 60,
+      formCycle90: !form.useCustomCycle && form.cycleDays === 90,
+      formCycle180: !form.useCustomCycle && form.cycleDays === 180,
+      formCycleCustomActive: form.useCustomCycle,
+      formPreviewImage: TYPE_IMAGE[form.type],
+      typeLabelWater: TYPE_INFO.water[lang], typeLabelAircon: TYPE_INFO.aircon[lang],
+      typeLabelPurifier: TYPE_INFO.purifier[lang], typeLabelVacuum: TYPE_INFO.vacuum[lang],
+      ...pillStyles,
+
+      pushEnabled: this.state.pushEnabled, togglePush: () => this.setState({ pushEnabled: !this.state.pushEnabled }),
+      pushTrackBg: this.state.pushEnabled ? '#14294B' : '#E3E6EB', pushKnobLeft: this.state.pushEnabled ? '23px' : '3px',
+      simTrackBg: this.state.simulateError ? '#C0392B' : '#E3E6EB', simKnobLeft: this.state.simulateError ? '23px' : '3px',
+      reminderLeadDays: this.state.reminderLeadDays,
+      setLead3: () => this.setState({ reminderLeadDays: 3 }),
+      setLead7: () => this.setState({ reminderLeadDays: 7 }),
+      setLead14: () => this.setState({ reminderLeadDays: 14 }),
+      leadIs3: this.state.reminderLeadDays === 3, leadIs7: this.state.reminderLeadDays === 7, leadIs14: this.state.reminderLeadDays === 14,
+      simulateError: this.state.simulateError, toggleSimulateError: () => this.setState({ simulateError: !this.state.simulateError }),
+      exportCsv: () => this.exportCsv(),
+      resetSampleData: () => this.resetSampleData(),
+      clearAllDevices: () => this.clearAllDevices(),
+      logout: () => this.logout(),
+      confirmingClearAll: this.state.confirmingClearAll,
+      notConfirmingClearAll: !this.state.confirmingClearAll,
+      askClearAll: () => this.setState({ confirmingClearAll: true }),
+      cancelClearAll: () => this.setState({ confirmingClearAll: false }),
+      confirmClearAllAction: () => { this.clearAllDevices(); this.setState({ confirmingClearAll: false }); },
+
+      accountName: this.state.authForm.name || (lang === 'th' ? 'ผู้ใช้ตัวอย่าง' : 'Sample user'),
+      accountEmail: this.state.authForm.email || 'you@example.com',
+      desktopStats: { total, soon: soonCount, overdue: overdueCount },
+      desktopDevices: views,
+    };
+  }
+}
+
+</script>
+</body>
+</html>

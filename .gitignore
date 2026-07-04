@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+node_modules/
+dist/
+social-post*
+*-social.html
+*-social-*.png
+.playwright-mcp/

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; }
+  * { font-family:'Inter',system-ui,sans-serif; }
+</style>
+</helmet>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="390,844"></x-import>
+<div style="min-height:100vh;background:#EEF0F3;padding:40px 44px 80px;box-sizing:border-box;">
+
+  <div style="max-width:1200px;margin:0 0 36px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+      <div style="width:34px;height:34px;border-radius:9px;background:#14294B;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M9 3.5h6a1 1 0 0 1 1 1V6H8V4.5a1 1 0 0 1 1-1z"/><path d="M8.5 13l2.5 2.5L16 10"/></svg>
+      </div>
+      <div style="font-size:19px;font-weight:700;color:#14161A;">รอบไส้กรอง (FilterCycle) — ภาพรวมหน้าจอทั้งหมด</div>
+    </div>
+    <div style="font-size:13.5px;font-weight:500;color:#5B6472;line-height:1.9;max-width:720px;">
+      รวมหน้าจอทั้งหมดของ Idea #2 "ลงทะเบียนอุปกรณ์" แยกเป็นเฟรมเดี่ยวเพื่อรีวิว UI แต่ละหน้า — ใช้เมาส์แพนและซูมเพื่อดูรายละเอียด ดูเวอร์ชันที่ใช้งานได้จริงแบบ single-flow ที่ไฟล์ DeviceRegistration.dc.html
+    </div>
+  </div>
+
+  <!-- ===== AUTH & ONBOARDING ===== -->
+  <div style="font-size:12px;font-weight:700;color:#9AA3B0;text-transform:uppercase;letter-spacing:0.6px;margin:0 0 14px;">เริ่มต้นใช้งาน · Onboarding &amp; Auth</div>
+  <div style="display:flex;gap:28px;flex-wrap:wrap;margin-bottom:44px;" data-screen-label="01-03 Onboarding, Login, Signup">
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#14294B;color:#fff;">01</span><span style="font-size:12.5px;font-weight:700;color:#14161A;">หน้าแนะนำแอป · Onboarding</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 390 }}" height="{{ 844 }}" dark="{{ true }}" hint-size="390,844">
+        <div style="min-height:100%;display:flex;flex-direction:column;background:linear-gradient(165deg,#182F54 0%,#0E1E38 100%);color:#fff;padding:74px 26px 36px;box-sizing:border-box;">
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:26px;">
+            <div style="width:54px;height:54px;border-radius:15px;background:rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M9 3.5h6a1 1 0 0 1 1 1V6H8V4.5a1 1 0 0 1 1-1z"/><path d="M8.5 13l2.5 2.5L16 10"/></svg>
+            </div>
+            <div>
+              <h1 style="font-size:27px;font-weight:700;line-height:1.5;margin:0 0 12px;">ไม่ลืมรอบเปลี่ยนไส้กรองอีกต่อไป</h1>
+              <p style="font-size:15px;font-weight:500;line-height:1.9;color:rgba(255,255,255,0.72);margin:0;">ลงทะเบียนอุปกรณ์ในบ้าน ระบบคำนวณวันเปลี่ยนถัดไปให้อัตโนมัติ แล้วเตือนก่อนถึงกำหนด</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:15px;margin-top:4px;">
+              <div style="display:flex;align-items:center;gap:12px;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8FE3B8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.6 2.6L16 9.3"/></svg><span style="font-size:14px;font-weight:500;">ลงทะเบียนอุปกรณ์ที่มีไส้กรอง</span></div>
+              <div style="display:flex;align-items:center;gap:12px;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8FE3B8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.6 2.6L16 9.3"/></svg><span style="font-size:14px;font-weight:500;">คำนวณรอบเปลี่ยนให้อัตโนมัติ</span></div>
+              <div style="display:flex;align-items:center;gap:12px;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8FE3B8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.6 2.6L16 9.3"/></svg><span style="font-size:14px;font-weight:500;">แจ้งเตือนก่อนถึงกำหนดเปลี่ยน</span></div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <button style="height:52px;border-radius:14px;background:#fff;color:#14294B;font-size:16px;font-weight:700;border:none;">เริ่มต้นใช้งาน</button>
+            <div style="text-align:center;font-size:13px;font-weight:500;color:rgba(255,255,255,0.68);">มีบัญชีอยู่แล้ว <span style="color:#fff;font-weight:700;text-decoration:underline;">เข้าสู่ระบบ</span></div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#14294B;color:#fff;">02</span><span style="font-size:12.5px;font-weight:700;color:#14161A;">หน้าเข้าสู่ระบบ · Login</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 390 }}" height="{{ 844 }}" hint-size="390,844">
+        <div style="min-height:100%;display:flex;flex-direction:column;background:#fff;padding:72px 24px 40px;box-sizing:border-box;">
+          <h1 style="font-size:24px;font-weight:700;color:#14161A;margin:0 0 6px;">เข้าสู่ระบบ</h1>
+          <p style="font-size:14px;font-weight:500;color:#5B6472;margin:0 0 26px;line-height:1.9;">ลงชื่อเข้าใช้เพื่อดูอุปกรณ์ของคุณ</p>
+          <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;">อีเมล</label>
+          <div style="height:48px;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;display:flex;align-items:center;font-size:15px;font-weight:500;color:#9AA3B0;margin-bottom:16px;">you@example.com</div>
+          <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;">รหัสผ่าน</label>
+          <div style="height:48px;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;display:flex;align-items:center;font-size:15px;font-weight:500;color:#9AA3B0;margin-bottom:10px;">••••••••</div>
+          <div style="text-align:right;margin-bottom:16px;"><span style="font-size:13px;font-weight:600;color:#14294B;">ลืมรหัสผ่าน?</span></div>
+          <button style="height:50px;border-radius:12px;background:#14294B;color:#fff;font-size:15px;font-weight:700;border:none;">เข้าสู่ระบบ</button>
+          <div style="text-align:center;font-size:13px;font-weight:500;color:#5B6472;margin-top:22px;">ยังไม่มีบัญชี <span style="color:#14294B;font-weight:700;text-decoration:underline;">สมัครสมาชิก</span></div>
+        </div>
+      </x-import>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#14294B;color:#fff;">03</span><span style="font-size:12.5px;font-weight:700;color:#14161A;">หน้าสมัครสมาชิก · Sign up</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 390 }}" height="{{ 844 }}" hint-size="390,844">
+        <div style="min-height:100%;display:flex;flex-direction:column;background:#fff;padding:72px 24px 40px;box-sizing:border-box;">
+          <h1 style="font-size:24px;font-weight:700;color:#14161A;margin:0 0 6px;">สร้างบัญชีใหม่</h1>
+          <p style="font-size:14px;font-weight:500;color:#5B6472;margin:0 0 22px;line-height:1.9;">เริ่มลงทะเบียนอุปกรณ์ชิ้นแรกของคุณ</p>
+          <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:6px;">ชื่อ-นามสกุล</label>
+          <div style="height:44px;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;display:flex;align-items:center;font-size:14px;font-weight:500;color:#9AA3B0;margin-bottom:12px;">เช่น สมชาย ใจดี</div>
+          <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:6px;">อีเมล</label>
+          <div style="height:44px;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;display:flex;align-items:center;font-size:14px;font-weight:500;color:#9AA3B0;margin-bottom:12px;">you@example.com</div>
+          <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:6px;">รหัสผ่าน</label>
+          <div style="height:44px;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;display:flex;align-items:center;font-size:14px;font-weight:500;color:#9AA3B0;margin-bottom:12px;">••••••••</div>
+          <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:6px;">ยืนยันรหัสผ่าน</label>
+          <div style="height:44px;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;display:flex;align-items:center;font-size:14px;font-weight:500;color:#9AA3B0;margin-bottom:16px;">••••••••</div>
+          <button style="height:50px;border-radius:12px;background:#14294B;color:#fff;font-size:15px;font-weight:700;border:none;">สร้างบัญชี</button>
+        </div>
+      </x-import>
+    </div>
+  </div>
+
+  <!-- ===== CORE FLOW — 3 key screens ===== -->
+  <div style="font-size:12px;font-weight:700;color:#9AA3B0;text-transform:uppercase;letter-spacing:0.6px;margin:0 0 14px;">หน้าสำคัญสุด · Core flow (การ์ดอุปกรณ์+วงแหวน / ฟอร์มเพิ่มอุปกรณ์ / detail+สั่งซื้อ)</div>
+  <div style="display:flex;gap:28px;flex-wrap:wrap;margin-bottom:44px;" data-screen-label="04-06 Home, Add Device, Detail">
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#14294B;color:#fff;">04</span><span style="font-size:12.5px;font-weight:700;color:#14161A;">หน้าหลัก · Home (การ์ดอุปกรณ์ + วงแหวน progress)</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 390 }}" height="{{ 844 }}" hint-size="390,844">
+        <div style="min-height:100%;display:flex;flex-direction:column;background:#F7F8FA;box-sizing:border-box;">
+          <div style="padding:58px 20px 16px;background:#fff;border-bottom:1px solid #E3E6EB;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+              <h1 style="font-size:21px;font-weight:700;color:#14161A;margin:0;">อุปกรณ์ของฉัน</h1>
+              <div style="width:38px;height:38px;border-radius:11px;background:#14294B;display:flex;align-items:center;justify-content:center;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <div style="flex:1;background:#F5F6F8;border-radius:10px;padding:9px 6px;text-align:center;"><div style="font-size:17px;font-weight:700;color:#14161A;">4</div><div style="font-size:10px;font-weight:600;color:#5B6472;">ทั้งหมด</div></div>
+              <div style="flex:1;background:#FDF3E3;border-radius:10px;padding:9px 6px;text-align:center;"><div style="font-size:17px;font-weight:700;color:#B9770E;">1</div><div style="font-size:10px;font-weight:600;color:#B9770E;">ใกล้ถึงรอบ</div></div>
+              <div style="flex:1;background:#FBE9E7;border-radius:10px;padding:9px 6px;text-align:center;"><div style="font-size:17px;font-weight:700;color:#C0392B;">2</div><div style="font-size:10px;font-weight:600;color:#C0392B;">เกินกำหนด</div></div>
+            </div>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:16px 20px 20px;">
+
+            <div style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:13px;">
+              <div style="position:relative;width:48px;height:48px;flex-shrink:0;">
+                <svg width="48" height="48" viewBox="0 0 48 48" style="transform:rotate(-90deg);"><circle cx="24" cy="24" r="21" fill="none" stroke="#EDEFF2" stroke-width="4"/><circle cx="24" cy="24" r="21" fill="none" stroke="#C0392B" stroke-width="4" stroke-linecap="round" stroke-dasharray="131.9" stroke-dashoffset="0"/></svg>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3z"/></svg></div>
+              </div>
+              <div style="flex:1;min-width:0;"><div style="font-size:14.5px;font-weight:700;color:#14161A;">กรองน้ำใต้ซิงก์ครัว</div><div style="font-size:12px;font-weight:500;color:#5B6472;">เครื่องกรองน้ำ · ห้องครัว</div></div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;"><div style="font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:#FBE9E7;color:#C0392B;">เกินกำหนด</div><div style="font-size:11px;font-weight:600;color:#5B6472;">เกินกำหนดมาแล้ว 4 วัน</div></div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:13px;">
+              <div style="position:relative;width:48px;height:48px;flex-shrink:0;">
+                <svg width="48" height="48" viewBox="0 0 48 48" style="transform:rotate(-90deg);"><circle cx="24" cy="24" r="21" fill="none" stroke="#EDEFF2" stroke-width="4"/><circle cx="24" cy="24" r="21" fill="none" stroke="#C0392B" stroke-width="4" stroke-linecap="round" stroke-dasharray="131.9" stroke-dashoffset="0"/></svg>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20h6"/><path d="M8 20V11a4 4 0 0 1 8 0v9"/><circle cx="12" cy="6" r="2.3"/></svg></div>
+              </div>
+              <div style="flex:1;min-width:0;"><div style="font-size:14.5px;font-weight:700;color:#14161A;">เครื่องดูดฝุ่นไร้สาย</div><div style="font-size:12px;font-weight:500;color:#5B6472;">เครื่องดูดฝุ่น · ห้องเก็บของ</div></div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;"><div style="font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:#FBE9E7;color:#C0392B;">เกินกำหนด</div><div style="font-size:11px;font-weight:600;color:#5B6472;">เกินกำหนดมาแล้ว 55 วัน</div></div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:13px;">
+              <div style="position:relative;width:48px;height:48px;flex-shrink:0;">
+                <svg width="48" height="48" viewBox="0 0 48 48" style="transform:rotate(-90deg);"><circle cx="24" cy="24" r="21" fill="none" stroke="#EDEFF2" stroke-width="4"/><circle cx="24" cy="24" r="21" fill="none" stroke="#B9770E" stroke-width="4" stroke-linecap="round" stroke-dasharray="131.9" stroke-dashoffset="24"/></svg>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h11a2.5 2.5 0 1 0-2.5-2.5"/><path d="M4 13h14a2.5 2.5 0 1 1-2.5 2.5"/><path d="M4 18h9"/></svg></div>
+              </div>
+              <div style="flex:1;min-width:0;"><div style="font-size:14.5px;font-weight:700;color:#14161A;">แอร์ห้องนอนใหญ่</div><div style="font-size:12px;font-weight:500;color:#5B6472;">เครื่องปรับอากาศ · ห้องนอนใหญ่</div></div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;"><div style="font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:#FDF3E3;color:#B9770E;">ใกล้ถึงรอบ</div><div style="font-size:11px;font-weight:600;color:#5B6472;">เหลืออีก 5 วัน</div></div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:13px;">
+              <div style="position:relative;width:48px;height:48px;flex-shrink:0;">
+                <svg width="48" height="48" viewBox="0 0 48 48" style="transform:rotate(-90deg);"><circle cx="24" cy="24" r="21" fill="none" stroke="#EDEFF2" stroke-width="4"/><circle cx="24" cy="24" r="21" fill="none" stroke="#1E8E5A" stroke-width="4" stroke-linecap="round" stroke-dasharray="131.9" stroke-dashoffset="79"/></svg>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></div>
+              </div>
+              <div style="flex:1;min-width:0;"><div style="font-size:14.5px;font-weight:700;color:#14161A;">เครื่องฟอกอากาศห้องนั่งเล่น</div><div style="font-size:12px;font-weight:500;color:#5B6472;">เครื่องฟอกอากาศ · ห้องนั่งเล่น</div></div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;"><div style="font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:#E7F5EE;color:#1E8E5A;">ปกติ</div><div style="font-size:11px;font-weight:600;color:#5B6472;">เหลืออีก 42 วัน</div></div>
+            </div>
+
+          </div>
+          <div style="display:flex;background:#fff;border-top:1px solid #E3E6EB;padding:10px 6px 26px;">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#14294B;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9h5v-5h2v5h5v-9"/></svg><span style="font-size:10.5px;font-weight:700;">หน้าหลัก</span></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#9AA3B0;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg><span style="font-size:10.5px;font-weight:500;">ค้นหา</span></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#9AA3B0;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/><path d="M9.5 17a2.5 2.5 0 0 0 5 0"/></svg><span style="font-size:10.5px;font-weight:500;">แจ้งเตือน</span></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#9AA3B0;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="14" cy="7" r="2.1"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="17" r="2.1"/></svg><span style="font-size:10.5px;font-weight:500;">ตั้งค่า</span></div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#14294B;color:#fff;">05</span><span style="font-size:12.5px;font-weight:700;color:#14161A;">ฟอร์มเพิ่มอุปกรณ์ · Add device</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 390 }}" height="{{ 844 }}" hint-size="390,844">
+        <div style="min-height:100%;display:flex;flex-direction:column;background:#fff;box-sizing:border-box;">
+          <div style="padding:56px 20px 0;">
+            <div style="width:36px;height:36px;border-radius:10px;background:#F5F6F8;display:flex;align-items:center;justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14161A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></div>
+          </div>
+          <div style="flex:1;overflow:auto;padding:14px 20px 30px;display:flex;flex-direction:column;gap:16px;">
+            <div><div style="font-size:19px;font-weight:700;color:#14161A;margin-bottom:5px;">เพิ่มอุปกรณ์</div><div style="font-size:13px;font-weight:500;color:#5B6472;line-height:1.8;">กรอกข้อมูลอุปกรณ์เพื่อเริ่มนับรอบเปลี่ยนไส้กรอง</div></div>
+            <div><label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;display:block;">ชื่อเรียกอุปกรณ์ <span style="color:#C0392B;">*</span></label><div style="height:46px;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;display:flex;align-items:center;font-size:15px;font-weight:500;color:#14161A;">กรองน้ำใต้ซิงก์ครัว</div></div>
+            <div>
+              <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;display:block;">ประเภทอุปกรณ์</label>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
+                <div style="display:flex;align-items:center;gap:9px;height:48px;border-radius:11px;padding:0 12px;background:#EFF3F9;border:1.5px solid #14294B;color:#14294B;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3z"/></svg><span style="font-size:12.5px;font-weight:700;">เครื่องกรองน้ำ</span></div>
+                <div style="display:flex;align-items:center;gap:9px;height:48px;border-radius:11px;padding:0 12px;background:#fff;border:1.5px solid #E3E6EB;color:#5B6472;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h11a2.5 2.5 0 1 0-2.5-2.5"/><path d="M4 13h14a2.5 2.5 0 1 1-2.5 2.5"/><path d="M4 18h9"/></svg><span style="font-size:12.5px;font-weight:700;">เครื่องปรับอากาศ</span></div>
+                <div style="display:flex;align-items:center;gap:9px;height:48px;border-radius:11px;padding:0 12px;background:#fff;border:1.5px solid #E3E6EB;color:#5B6472;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg><span style="font-size:12.5px;font-weight:700;">เครื่องฟอกอากาศ</span></div>
+                <div style="display:flex;align-items:center;gap:9px;height:48px;border-radius:11px;padding:0 12px;background:#fff;border:1.5px solid #E3E6EB;color:#5B6472;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20h6"/><path d="M8 20V11a4 4 0 0 1 8 0v9"/><circle cx="12" cy="6" r="2.3"/></svg><span style="font-size:12.5px;font-weight:700;">เครื่องดูดฝุ่น</span></div>
+              </div>
+            </div>
+            <div style="display:flex;gap:11px;">
+              <img src="images/device-water-filter.png" alt="ภาพประกอบอุปกรณ์" style="flex:1;height:76px;object-fit:contain;background:#F5F6F8;border-radius:11px;" />
+              <div style="flex:2;display:flex;flex-direction:column;justify-content:center;"><label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;">ยี่ห้อ / รุ่น</label><div style="height:44px;border-radius:11px;border:1px solid #E3E6EB;padding:0 12px;display:flex;align-items:center;font-size:14px;font-weight:500;color:#14161A;">AquaPure RO-500</div></div>
+            </div>
+            <div><label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;display:block;">วันที่เปลี่ยนล่าสุด <span style="color:#C0392B;">*</span></label><div style="height:46px;border-radius:11px;border:1px solid #E3E6EB;padding:0 14px;display:flex;align-items:center;font-size:15px;font-weight:500;color:#14161A;justify-content:space-between;"><span>01/04/2026</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9AA3B0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"/><line x1="4" y1="10" x2="20" y2="10"/></svg></div></div>
+            <div>
+              <label style="font-size:13px;font-weight:600;color:#14161A;margin-bottom:7px;display:block;">รอบเปลี่ยน (วัน) <span style="color:#C0392B;">*</span></label>
+              <div style="display:flex;gap:8px;">
+                <div style="height:38px;padding:0 14px;border-radius:20px;background:#fff;border:1.5px solid #E3E6EB;color:#5B6472;font-size:13px;font-weight:700;display:flex;align-items:center;">30</div>
+                <div style="height:38px;padding:0 14px;border-radius:20px;background:#fff;border:1.5px solid #E3E6EB;color:#5B6472;font-size:13px;font-weight:700;display:flex;align-items:center;">60</div>
+                <div style="height:38px;padding:0 14px;border-radius:20px;background:#EFF3F9;border:1.5px solid #14294B;color:#14294B;font-size:13px;font-weight:700;display:flex;align-items:center;">90</div>
+                <div style="height:38px;padding:0 14px;border-radius:20px;background:#fff;border:1.5px solid #E3E6EB;color:#5B6472;font-size:13px;font-weight:700;display:flex;align-items:center;">180</div>
+              </div>
+            </div>
+            <div style="height:50px;border-radius:12px;background:#14294B;color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;">บันทึกอุปกรณ์</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#14294B;color:#fff;">06</span><span style="font-size:12.5px;font-weight:700;color:#14161A;">รายละเอียดอุปกรณ์ + ปุ่มสั่งซื้อ · Detail</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 390 }}" height="{{ 844 }}" hint-size="390,844">
+        <div style="min-height:100%;display:flex;flex-direction:column;background:#fff;box-sizing:border-box;">
+          <div style="padding:56px 20px 0;display:flex;align-items:center;justify-content:space-between;">
+            <div style="width:36px;height:36px;border-radius:10px;background:#F5F6F8;display:flex;align-items:center;justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14161A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></div>
+            <div style="width:36px;height:36px;border-radius:10px;background:#F5F6F8;display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#14161A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4.5L15.5 5 19 8.5 8.5 19z"/></svg></div>
+          </div>
+          <div style="flex:1;overflow:auto;padding:16px 20px 24px;display:flex;flex-direction:column;gap:18px;">
+            <div style="text-align:center;"><div style="font-size:19px;font-weight:700;color:#14161A;">กรองน้ำใต้ซิงก์ครัว</div><div style="font-size:13px;font-weight:500;color:#5B6472;margin-top:4px;">เครื่องกรองน้ำ · ห้องครัว</div></div>
+            <div style="display:flex;justify-content:center;">
+              <div style="position:relative;width:128px;height:128px;">
+                <svg width="128" height="128" viewBox="0 0 128 128" style="transform:rotate(-90deg);"><circle cx="64" cy="64" r="54" fill="none" stroke="#EDEFF2" stroke-width="9"/><circle cx="64" cy="64" r="54" fill="none" stroke="#C0392B" stroke-width="9" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="0"/></svg>
+                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;"><div style="font-size:9.5px;font-weight:700;padding:2px 9px;border-radius:20px;background:#FBE9E7;color:#C0392B;white-space:nowrap;">เกินกำหนด</div><div style="font-size:10.5px;font-weight:700;color:#14161A;line-height:1.4;text-align:center;width:84px;">เกินกำหนดมาแล้ว 4 วัน</div></div>
+              </div>
+            </div>
+            <div style="background:#F5F6F8;border-radius:14px;overflow:hidden;">
+              <img src="images/device-water-filter.png" alt="ภาพประกอบอุปกรณ์" style="width:100%;height:148px;object-fit:contain;display:block;" />
+              <div style="text-align:center;font-size:10.5px;font-weight:500;color:#9AA3B0;padding:8px;font-family:ui-monospace,monospace;">ภาพประกอบอุปกรณ์ (ตัวอย่าง)</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:11px;background:#F5F6F8;border-radius:14px;padding:16px;">
+              <div style="display:flex;justify-content:space-between;font-size:13px;"><span style="color:#5B6472;">กำหนดเปลี่ยนถัดไป</span><span style="color:#14161A;font-weight:700;">30 มิ.ย. 2569</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;"><span style="color:#5B6472;">เปลี่ยนล่าสุดเมื่อ</span><span style="color:#14161A;font-weight:700;">1 เม.ย. 2569</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;"><span style="color:#5B6472;">รอบเปลี่ยน (วัน)</span><span style="color:#14161A;font-weight:700;">ทุก 90 วัน</span></div>
+            </div>
+            <div style="height:50px;border-radius:12px;background:#14294B;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.6 2.6L16 9.3"/></svg>ทำเครื่องหมายว่าเปลี่ยนวันนี้</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="height:50px;border-radius:12px;border:1.5px solid #14294B;color:#14294B;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M3 8v9l9 4 9-4V8"/></svg>สั่งซื้อไส้กรองรุ่นเดิม</div>
+              <div style="text-align:center;font-size:11px;font-weight:500;color:#9AA3B0;">ลิงก์ตัวอย่าง เปิดหน้าสั่งซื้อไส้กรองรุ่นเดียวกัน</div>
+            </div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+  </div>
+
+  <!-- ===== SUPPORTING SCREENS ===== -->
+  <div style="font-size:12px;font-weight:700;color:#9AA3B0;text-transform:uppercase;letter-spacing:0.6px;margin:0 0 14px;">หน้าสนับสนุน · Search, Notifications, Settings</div>
+  <div style="display:flex;gap:28px;flex-wrap:wrap;margin-bottom:44px;" data-screen-label="07-09 Search, Notifications, Settings">
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#14294B;color:#fff;">07</span><span style="font-size:12.5px;font-weight:700;color:#14161A;">หน้าค้นหาและกรอง · Search</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 390 }}" height="{{ 844 }}" hint-size="390,844">
+        <div style="min-height:100%;display:flex;flex-direction:column;background:#F7F8FA;box-sizing:border-box;">
+          <div style="padding:58px 20px 14px;background:#fff;border-bottom:1px solid #E3E6EB;display:flex;flex-direction:column;gap:12px;">
+            <h1 style="font-size:21px;font-weight:700;color:#14161A;margin:0;">ค้นหาอุปกรณ์</h1>
+            <div style="height:46px;border-radius:12px;background:#F5F6F8;border:1px solid #E3E6EB;display:flex;align-items:center;padding:0 14px;gap:8px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9AA3B0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg><span style="font-size:14px;font-weight:500;color:#9AA3B0;">กรองน้ำ</span></div>
+            <div style="display:flex;gap:7px;">
+              <div style="height:32px;padding:0 13px;border-radius:20px;background:#EFF3F9;border:1.5px solid #14294B;color:#14294B;font-size:12px;font-weight:700;display:flex;align-items:center;">ทั้งหมด</div>
+              <div style="height:32px;padding:0 13px;border-radius:20px;background:#fff;border:1.5px solid #E3E6EB;color:#5B6472;font-size:12px;font-weight:700;display:flex;align-items:center;">ปกติ</div>
+              <div style="height:32px;padding:0 13px;border-radius:20px;background:#fff;border:1.5px solid #E3E6EB;color:#5B6472;font-size:12px;font-weight:700;display:flex;align-items:center;">ใกล้ถึงรอบ</div>
+              <div style="height:32px;padding:0 13px;border-radius:20px;background:#fff;border:1.5px solid #E3E6EB;color:#5B6472;font-size:12px;font-weight:700;display:flex;align-items:center;">เกินกำหนด</div>
+            </div>
+          </div>
+          <div style="padding:12px 20px 4px;font-size:12px;font-weight:600;color:#5B6472;">1 รายการ</div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:6px 20px 20px;">
+            <div style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:13px;">
+              <div style="width:42px;height:42px;border-radius:11px;background:#F5F6F8;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3z"/></svg></div>
+              <div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:700;color:#14161A;">กรองน้ำใต้ซิงก์ครัว</div><div style="font-size:11.5px;font-weight:500;color:#5B6472;">AquaPure RO-500 · ห้องครัว</div></div>
+              <div style="font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:#FBE9E7;color:#C0392B;">เกินกำหนด</div>
+            </div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#14294B;color:#fff;">08</span><span style="font-size:12.5px;font-weight:700;color:#14161A;">หน้าการแจ้งเตือน · Notifications</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 390 }}" height="{{ 844 }}" hint-size="390,844">
+        <div style="min-height:100%;display:flex;flex-direction:column;background:#F7F8FA;box-sizing:border-box;">
+          <div style="padding:58px 20px 16px;background:#fff;border-bottom:1px solid #E3E6EB;"><h1 style="font-size:21px;font-weight:700;color:#14161A;margin:0;">การแจ้งเตือน</h1></div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:16px 20px 20px;">
+            <div style="background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:flex-start;gap:11px;">
+                <div style="width:34px;height:34px;border-radius:10px;background:#FBE9E7;display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C0392B" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/></svg></div>
+                <div style="flex:1;"><div style="font-size:14px;font-weight:700;color:#14161A;">เครื่องดูดฝุ่นไร้สาย</div><div style="font-size:12.5px;font-weight:500;color:#5B6472;margin-top:2px;">เกินกำหนดเปลี่ยนมาแล้ว 55 วัน</div></div>
+                <div style="font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:#FBE9E7;color:#C0392B;">เกินกำหนด</div>
+              </div>
+              <div style="display:flex;gap:8px;"><div style="flex:1;height:38px;border-radius:10px;background:#14294B;color:#fff;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;">ดูอุปกรณ์</div><div style="flex:1;height:38px;border-radius:10px;background:#F5F6F8;color:#14161A;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;">เลื่อนแจ้งเตือน 7 วัน</div></div>
+            </div>
+            <div style="background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:flex-start;gap:11px;">
+                <div style="width:34px;height:34px;border-radius:10px;background:#FDF3E3;display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B9770E" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/></svg></div>
+                <div style="flex:1;"><div style="font-size:14px;font-weight:700;color:#14161A;">แอร์ห้องนอนใหญ่</div><div style="font-size:12.5px;font-weight:500;color:#5B6472;margin-top:2px;">ใกล้ครบรอบเปลี่ยนใน 5 วัน</div></div>
+                <div style="font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:#FDF3E3;color:#B9770E;">ใกล้ถึงรอบ</div>
+              </div>
+              <div style="display:flex;gap:8px;"><div style="flex:1;height:38px;border-radius:10px;background:#14294B;color:#fff;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;">ดูอุปกรณ์</div><div style="flex:1;height:38px;border-radius:10px;background:#F5F6F8;color:#14161A;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;">เลื่อนแจ้งเตือน 7 วัน</div></div>
+            </div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#14294B;color:#fff;">09</span><span style="font-size:12.5px;font-weight:700;color:#14161A;">หน้าตั้งค่า · Settings</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 390 }}" height="{{ 844 }}" hint-size="390,844">
+        <div style="min-height:100%;display:flex;flex-direction:column;background:#F7F8FA;box-sizing:border-box;">
+          <div style="padding:58px 20px 16px;background:#fff;border-bottom:1px solid #E3E6EB;"><h1 style="font-size:21px;font-weight:700;color:#14161A;margin:0;">ตั้งค่า</h1></div>
+          <div style="flex:1;overflow:auto;padding:18px 20px 20px;display:flex;flex-direction:column;gap:16px;">
+            <div>
+              <div style="font-size:11.5px;font-weight:700;color:#9AA3B0;text-transform:uppercase;margin-bottom:9px;">บัญชีผู้ใช้</div>
+              <div style="background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;">
+                <div style="width:42px;height:42px;border-radius:50%;background:#EFF3F9;display:flex;align-items:center;justify-content:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></div>
+                <div style="flex:1;"><div style="font-size:14px;font-weight:700;color:#14161A;">ผู้ใช้ตัวอย่าง</div><div style="font-size:12px;font-weight:500;color:#5B6472;">you@example.com</div></div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:11.5px;font-weight:700;color:#9AA3B0;text-transform:uppercase;margin-bottom:9px;">การแจ้งเตือน</div>
+              <div style="background:#fff;border:1px solid #E3E6EB;border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:13.5px;font-weight:600;color:#14161A;">แจ้งเตือนก่อนถึงกำหนด</span>
+                <div style="width:46px;height:26px;border-radius:20px;background:#14294B;position:relative;"><div style="position:absolute;top:3px;left:23px;width:20px;height:20px;border-radius:50%;background:#fff;"></div></div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:11.5px;font-weight:700;color:#9AA3B0;text-transform:uppercase;margin-bottom:9px;">ข้อมูล</div>
+              <div style="background:#fff;border:1px solid #E3E6EB;border-radius:14px;overflow:hidden;">
+                <div style="height:52px;display:flex;align-items:center;gap:12px;padding:0 14px;border-bottom:1px solid #EDEFF2;font-size:13.5px;font-weight:600;color:#14161A;">ส่งออกรายการเป็น CSV</div>
+                <div style="height:52px;display:flex;align-items:center;gap:12px;padding:0 14px;font-size:13.5px;font-weight:600;color:#C0392B;">ลบอุปกรณ์ทั้งหมด</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+  </div>
+
+  <!-- ===== STATES ===== -->
+  <div style="font-size:12px;font-weight:700;color:#9AA3B0;text-transform:uppercase;letter-spacing:0.6px;margin:0 0 14px;">สถานะพิเศษ · Empty &amp; Error states</div>
+  <div style="display:flex;gap:28px;flex-wrap:wrap;margin-bottom:44px;" data-screen-label="10-11 Empty, Error">
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#14294B;color:#fff;">10</span><span style="font-size:12.5px;font-weight:700;color:#14161A;">สถานะว่าง · Empty</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 390 }}" height="{{ 844 }}" hint-size="390,844">
+        <div style="min-height:100%;display:flex;flex-direction:column;background:#F7F8FA;box-sizing:border-box;">
+          <div style="padding:58px 20px 16px;background:#fff;border-bottom:1px solid #E3E6EB;"><h1 style="font-size:21px;font-weight:700;color:#14161A;margin:0;">อุปกรณ์ของฉัน</h1></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;gap:18px;">
+            <div style="width:64px;height:64px;border-radius:18px;background:#EDEFF2;display:flex;align-items:center;justify-content:center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#9AA3B0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3z"/></svg></div>
+            <div><div style="font-size:17px;font-weight:700;color:#14161A;margin-bottom:8px;">ยังไม่มีอุปกรณ์ในระบบ</div><div style="font-size:13.5px;font-weight:500;color:#5B6472;line-height:1.9;max-width:260px;">เพิ่มเครื่องกรองน้ำ แอร์ เครื่องฟอกอากาศ หรือเครื่องดูดฝุ่น เพื่อเริ่มนับรอบเปลี่ยนไส้กรอง</div></div>
+            <div style="height:46px;padding:0 22px;border-radius:12px;background:#14294B;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;">เพิ่มอุปกรณ์ชิ้นแรก</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#14294B;color:#fff;">11</span><span style="font-size:12.5px;font-weight:700;color:#14161A;">หน้าแสดงข้อผิดพลาด · Error</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ 390 }}" height="{{ 844 }}" hint-size="390,844">
+        <div style="min-height:100%;display:flex;flex-direction:column;background:#F7F8FA;box-sizing:border-box;">
+          <div style="padding:58px 20px 16px;background:#fff;border-bottom:1px solid #E3E6EB;"><h1 style="font-size:21px;font-weight:700;color:#14161A;margin:0;">อุปกรณ์ของฉัน</h1></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;gap:16px;">
+            <div style="width:64px;height:64px;border-radius:18px;background:#FBE9E7;display:flex;align-items:center;justify-content:center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C0392B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 21.5 20h-19z"/><line x1="12" y1="9.5" x2="12" y2="14"/></svg></div>
+            <div><div style="font-size:17px;font-weight:700;color:#14161A;margin-bottom:8px;">โหลดข้อมูลไม่สำเร็จ</div><div style="font-size:13.5px;font-weight:500;color:#5B6472;line-height:1.9;max-width:260px;">เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ในขณะนี้ ตรวจสอบอินเทอร์เน็ตแล้วลองอีกครั้ง</div><div style="font-size:11.5px;font-weight:500;color:#9AA3B0;margin-top:10px;font-family:ui-monospace,monospace;">รหัสข้อผิดพลาด: NET_TIMEOUT_504</div></div>
+            <div style="height:46px;padding:0 22px;border-radius:12px;background:#14294B;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v5h-5"/></svg>ลองอีกครั้ง</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+  </div>
+
+  <!-- ===== DESKTOP COMPANION ===== -->
+  <div style="font-size:12px;font-weight:700;color:#9AA3B0;text-transform:uppercase;letter-spacing:0.6px;margin:0 0 14px;">เดสก์ท็อป 1440px · Dashboard &amp; Settings companion</div>
+  <div style="display:flex;flex-direction:column;gap:28px;" data-screen-label="12-13 Desktop dashboard, Desktop settings">
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#14294B;color:#fff;">12</span><span style="font-size:12.5px;font-weight:700;color:#14161A;">ภาพรวมอุปกรณ์ (เดสก์ท็อป) · Dashboard</span></div>
+      <div data-shot="desktop-dashboard" style="width:1440px;max-width:100%;min-height:900px;box-sizing:border-box;background:#fff;border-radius:16px;border:1px solid #E3E6EB;box-shadow:0 20px 50px rgba(20,30,50,0.08);display:flex;overflow:hidden;">
+        <div style="width:220px;flex-shrink:0;background:#0E1E38;padding:24px 14px;display:flex;flex-direction:column;gap:2px;box-sizing:border-box;">
+          <div style="display:flex;align-items:center;gap:10px;padding:0 10px 22px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M9 3.5h6a1 1 0 0 1 1 1V6H8V4.5a1 1 0 0 1 1-1z"/><path d="M8.5 13l2.5 2.5L16 10"/></svg><span style="font-size:14.5px;font-weight:700;color:#fff;">รอบไส้กรอง</span></div>
+          <div style="height:42px;border-radius:10px;display:flex;align-items:center;gap:11px;padding:0 12px;background:rgba(255,255,255,0.1);color:#fff;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9h5v-5h2v5h5v-9"/></svg><span style="font-size:13.5px;font-weight:600;">หน้าหลัก</span></div>
+          <div style="height:42px;border-radius:10px;display:flex;align-items:center;gap:11px;padding:0 12px;color:rgba(255,255,255,0.55);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg><span style="font-size:13.5px;font-weight:600;">ค้นหา</span></div>
+          <div style="height:42px;border-radius:10px;display:flex;align-items:center;gap:11px;padding:0 12px;color:rgba(255,255,255,0.55);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/></svg><span style="font-size:13.5px;font-weight:600;">แจ้งเตือน</span></div>
+          <div style="height:42px;border-radius:10px;display:flex;align-items:center;gap:11px;padding:0 12px;color:rgba(255,255,255,0.55);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="14" cy="7" r="2.1"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="17" r="2.1"/></svg><span style="font-size:13.5px;font-weight:600;">ตั้งค่า</span></div>
+        </div>
+        <div style="flex:1;padding:32px 36px;box-sizing:border-box;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;">
+            <h1 style="font-size:24px;font-weight:700;color:#14161A;margin:0;">ภาพรวมอุปกรณ์</h1>
+            <div style="height:42px;padding:0 18px;border-radius:11px;background:#14294B;color:#fff;font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:8px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>เพิ่มอุปกรณ์</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px;">
+            <div style="background:#F5F6F8;border-radius:14px;padding:18px 20px;"><div style="font-size:26px;font-weight:700;color:#14161A;">4</div><div style="font-size:12.5px;font-weight:600;color:#5B6472;margin-top:4px;">ทั้งหมด</div></div>
+            <div style="background:#FDF3E3;border-radius:14px;padding:18px 20px;"><div style="font-size:26px;font-weight:700;color:#B9770E;">1</div><div style="font-size:12.5px;font-weight:600;color:#B9770E;margin-top:4px;">ใกล้ถึงรอบ</div></div>
+            <div style="background:#FBE9E7;border-radius:14px;padding:18px 20px;"><div style="font-size:26px;font-weight:700;color:#C0392B;">2</div><div style="font-size:12.5px;font-weight:600;color:#C0392B;margin-top:4px;">เกินกำหนด</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+            <div style="border:1px solid #E3E6EB;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;"><div style="width:38px;height:38px;border-radius:10px;background:#F5F6F8;display:flex;align-items:center;justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3z"/></svg></div><div style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:#FBE9E7;color:#C0392B;">เกินกำหนด</div></div>
+              <div><div style="font-size:13.5px;font-weight:700;color:#14161A;">กรองน้ำใต้ซิงก์ครัว</div><div style="font-size:11.5px;font-weight:500;color:#5B6472;margin-top:2px;">ห้องครัว</div></div>
+              <div style="font-size:11.5px;font-weight:600;color:#5B6472;border-top:1px solid #EDEFF2;padding-top:9px;">เปลี่ยนถัดไป: 30 มิ.ย. 2569</div>
+            </div>
+            <div style="border:1px solid #E3E6EB;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;"><div style="width:38px;height:38px;border-radius:10px;background:#F5F6F8;display:flex;align-items:center;justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h11a2.5 2.5 0 1 0-2.5-2.5"/><path d="M4 13h14a2.5 2.5 0 1 1-2.5 2.5"/><path d="M4 18h9"/></svg></div><div style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:#FDF3E3;color:#B9770E;">ใกล้ถึงรอบ</div></div>
+              <div><div style="font-size:13.5px;font-weight:700;color:#14161A;">แอร์ห้องนอนใหญ่</div><div style="font-size:11.5px;font-weight:500;color:#5B6472;margin-top:2px;">ห้องนอนใหญ่</div></div>
+              <div style="font-size:11.5px;font-weight:600;color:#5B6472;border-top:1px solid #EDEFF2;padding-top:9px;">เปลี่ยนถัดไป: 9 ก.ค. 2569</div>
+            </div>
+            <div style="border:1px solid #E3E6EB;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;"><div style="width:38px;height:38px;border-radius:10px;background:#F5F6F8;display:flex;align-items:center;justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></div><div style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:#E7F5EE;color:#1E8E5A;">ปกติ</div></div>
+              <div><div style="font-size:13.5px;font-weight:700;color:#14161A;">เครื่องฟอกอากาศห้องนั่งเล่น</div><div style="font-size:11.5px;font-weight:500;color:#5B6472;margin-top:2px;">ห้องนั่งเล่น</div></div>
+              <div style="font-size:11.5px;font-weight:600;color:#5B6472;border-top:1px solid #EDEFF2;padding-top:9px;">เปลี่ยนถัดไป: 15 ส.ค. 2569</div>
+            </div>
+            <div style="border:1px solid #E3E6EB;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;"><div style="width:38px;height:38px;border-radius:10px;background:#F5F6F8;display:flex;align-items:center;justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20h6"/><path d="M8 20V11a4 4 0 0 1 8 0v9"/><circle cx="12" cy="6" r="2.3"/></svg></div><div style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:#FBE9E7;color:#C0392B;">เกินกำหนด</div></div>
+              <div><div style="font-size:13.5px;font-weight:700;color:#14161A;">เครื่องดูดฝุ่นไร้สาย</div><div style="font-size:11.5px;font-weight:500;color:#5B6472;margin-top:2px;">ห้องเก็บของ</div></div>
+              <div style="font-size:11.5px;font-weight:600;color:#5B6472;border-top:1px solid #EDEFF2;padding-top:9px;">เปลี่ยนถัดไป: 10 พ.ค. 2569</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:#14294B;color:#fff;">13</span><span style="font-size:12.5px;font-weight:700;color:#14161A;">ตั้งค่า (เดสก์ท็อป) · Settings companion</span></div>
+      <div data-shot="desktop-settings" style="width:1440px;max-width:100%;min-height:900px;box-sizing:border-box;background:#fff;border-radius:16px;border:1px solid #E3E6EB;box-shadow:0 20px 50px rgba(20,30,50,0.08);display:flex;overflow:hidden;">
+        <div style="width:220px;flex-shrink:0;background:#0E1E38;padding:24px 14px;display:flex;flex-direction:column;gap:2px;box-sizing:border-box;">
+          <div style="display:flex;align-items:center;gap:10px;padding:0 10px 22px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M9 3.5h6a1 1 0 0 1 1 1V6H8V4.5a1 1 0 0 1 1-1z"/><path d="M8.5 13l2.5 2.5L16 10"/></svg><span style="font-size:14.5px;font-weight:700;color:#fff;">รอบไส้กรอง</span></div>
+          <div style="height:42px;border-radius:10px;display:flex;align-items:center;gap:11px;padding:0 12px;color:rgba(255,255,255,0.55);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9h5v-5h2v5h5v-9"/></svg><span style="font-size:13.5px;font-weight:600;">หน้าหลัก</span></div>
+          <div style="height:42px;border-radius:10px;display:flex;align-items:center;gap:11px;padding:0 12px;color:rgba(255,255,255,0.55);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg><span style="font-size:13.5px;font-weight:600;">ค้นหา</span></div>
+          <div style="height:42px;border-radius:10px;display:flex;align-items:center;gap:11px;padding:0 12px;color:rgba(255,255,255,0.55);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/></svg><span style="font-size:13.5px;font-weight:600;">แจ้งเตือน</span></div>
+          <div style="height:42px;border-radius:10px;display:flex;align-items:center;gap:11px;padding:0 12px;background:rgba(255,255,255,0.1);color:#fff;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="14" cy="7" r="2.1"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="17" r="2.1"/></svg><span style="font-size:13.5px;font-weight:600;">ตั้งค่า</span></div>
+        </div>
+        <div style="flex:1;padding:32px 36px;box-sizing:border-box;">
+          <h1 style="font-size:24px;font-weight:700;color:#14161A;margin:0 0 22px;">ตั้งค่า</h1>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div style="background:#F5F6F8;border-radius:14px;padding:18px;">
+              <div style="font-size:12px;font-weight:700;color:#9AA3B0;text-transform:uppercase;margin-bottom:12px;">บัญชีผู้ใช้</div>
+              <div style="display:flex;align-items:center;gap:12px;"><div style="width:42px;height:42px;border-radius:50%;background:#EFF3F9;display:flex;align-items:center;justify-content:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#14294B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></div><div><div style="font-size:14px;font-weight:700;color:#14161A;">ผู้ใช้ตัวอย่าง</div><div style="font-size:12px;font-weight:500;color:#5B6472;">you@example.com</div></div></div>
+            </div>
+            <div style="background:#F5F6F8;border-radius:14px;padding:18px;">
+              <div style="font-size:12px;font-weight:700;color:#9AA3B0;text-transform:uppercase;margin-bottom:12px;">การแจ้งเตือน</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:13px;font-weight:600;color:#14161A;">แจ้งเตือนก่อนถึงกำหนด</span><div style="width:44px;height:25px;border-radius:20px;background:#14294B;position:relative;"><div style="position:absolute;top:3px;left:22px;width:19px;height:19px;border-radius:50%;background:#fff;"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</x-dc>
+</body>
+</html>
